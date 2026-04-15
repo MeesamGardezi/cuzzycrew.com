@@ -1,0 +1,177 @@
+<%- include('../partials/admin-head') %>
+<%- include('../partials/admin-header') %>
+
+<main class="admin-main" id="main-content">
+  <section class="admin-page-header">
+    <div>
+      <h1 class="admin-page-title">Overview</h1>
+      <p class="admin-page-copy">Fast, analytics-first view of traffic, conversion, and lead movement in the last 7 days.</p>
+    </div>
+    <div class="admin-inline-actions">
+      <a href="/admin/contacts" class="admin-secondary-button">Open Inbox</a>
+      <a href="/admin/analytics" class="admin-secondary-button">Open Analytics</a>
+    </div>
+  </section>
+
+  <section class="admin-kpis" aria-label="Key performance indicators">
+    <article class="admin-kpi-card">
+      <span>Total Visits</span>
+      <strong><%= summary.kpis.totalVisits %></strong>
+      <small>Last 7 days</small>
+    </article>
+    <article class="admin-kpi-card">
+      <span>Unique Visitors</span>
+      <strong><%= summary.kpis.uniqueVisitors %></strong>
+      <small>Anonymized dedupe</small>
+    </article>
+    <article class="admin-kpi-card">
+      <span>Join Rate</span>
+      <strong><%= summary.kpis.visitToJoinRate %>%</strong>
+      <small><%= summary.kpis.joinConversions %> signups</small>
+    </article>
+    <article class="admin-kpi-card">
+      <span>Lead Rate</span>
+      <strong><%= summary.funnel.visitToLeadRate %>%</strong>
+      <small><%= summary.funnel.leads %> total leads</small>
+    </article>
+    <article class="admin-kpi-card">
+      <span>Geo Coverage</span>
+      <strong><%= summary.quality.geoCoverageRate %>%</strong>
+      <small>Visits with location data</small>
+    </article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>What Changed</h2>
+      </div>
+      <ul class="admin-insight-list">
+        <li>
+          <span>Visits vs previous period</span>
+          <strong class="admin-delta <%= Number(summary.comparison.visitsDeltaPct) >= 0 ? 'is-positive' : 'is-negative' %>">
+            <%= Number(summary.comparison.visitsDeltaPct) >= 0 ? '+' : '' %><%= summary.comparison.visitsDeltaPct %>%
+          </strong>
+        </li>
+        <li>
+          <span>Joins vs previous period</span>
+          <strong class="admin-delta <%= Number(summary.comparison.joinsDeltaPct) >= 0 ? 'is-positive' : 'is-negative' %>">
+            <%= Number(summary.comparison.joinsDeltaPct) >= 0 ? '+' : '' %><%= summary.comparison.joinsDeltaPct %>%
+          </strong>
+        </li>
+        <li>
+          <span>Contacts vs previous period</span>
+          <strong class="admin-delta <%= Number(summary.comparison.contactsDeltaPct) >= 0 ? 'is-positive' : 'is-negative' %>">
+            <%= Number(summary.comparison.contactsDeltaPct) >= 0 ? '+' : '' %><%= summary.comparison.contactsDeltaPct %>%
+          </strong>
+        </li>
+      </ul>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Top Signals</h2>
+      </div>
+      <ul class="admin-insight-list">
+        <li>
+          <span>Best source</span>
+          <strong><%= insights.topSourceLabel %> (<%= insights.topSourceValue %>)</strong>
+        </li>
+        <li>
+          <span>Top location</span>
+          <strong><%= insights.topLocationLabel %> (<%= insights.topLocationValue %>)</strong>
+        </li>
+        <li>
+          <span>Open contacts</span>
+          <strong><%= insights.openContacts %></strong>
+        </li>
+        <li>
+          <span>Peak day</span>
+          <strong><%= summary.peakDay.date || 'No data' %><%= summary.peakDay.date ? ' (' + summary.peakDay.visits + ' visits)' : '' %></strong>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Daily Trend</h2>
+        <a href="/admin/analytics">Details</a>
+      </div>
+      <% const maxVisits = Math.max(1, ...summary.dailyTrend.map((day) => day.visits || 0)); %>
+      <div class="admin-bar-list" role="img" aria-label="Daily visit trend">
+        <% if (!summary.dailyTrend.length) { %>
+        <p class="admin-empty">No traffic data yet.</p>
+        <% } %>
+        <% summary.dailyTrend.forEach(function(day) { %>
+        <div class="admin-bar-row">
+          <span><%= day.date %></span>
+          <div class="admin-bar-track"><div class="admin-bar-fill" style="width:<%= ((day.visits / maxVisits) * 100).toFixed(2) %>%"></div></div>
+          <strong><%= day.visits %></strong>
+        </div>
+        <% }); %>
+      </div>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Source Mix</h2>
+        <a href="/admin/analytics">Details</a>
+      </div>
+      <div class="admin-list-stack">
+        <% if (!summary.topSources.length) { %>
+        <p class="admin-empty">No source data available yet.</p>
+        <% } %>
+        <% summary.topSources.forEach(function(source) { %>
+        <div class="admin-list-row">
+          <span><%= source.label %></span>
+          <strong><%= source.value %></strong>
+        </div>
+        <% }); %>
+      </div>
+    </article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Newest Contacts</h2>
+        <a href="/admin/contacts">Open inbox</a>
+      </div>
+      <% if (!contacts.items.length) { %>
+      <p class="admin-empty">No contact requests have landed yet.</p>
+      <% } else { %>
+      <div class="admin-list-stack">
+        <% contacts.items.forEach(function(contact) { %>
+        <a class="admin-contact-snippet" href="/admin/contacts/<%= contact.id %>">
+          <div>
+            <strong><%= contact.brand %></strong>
+            <span><%= contact.email %></span>
+          </div>
+          <div>
+            <span class="admin-status admin-status-<%= contact.status %>"><%= contact.status.replace('_', ' ') %></span>
+            <small><%= contact.createdAt.slice(0, 10) %></small>
+          </div>
+        </a>
+        <% }); %>
+      </div>
+      <% } %>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Conversion Funnel</h2>
+        <a href="/admin/analytics">Details</a>
+      </div>
+      <ul class="admin-insight-list" aria-label="Conversion funnel metrics">
+        <li><span>Visits:&nbsp;</span><strong><%= summary.funnel.visits %></strong></li>
+        <li><span>Join events:&nbsp;</span><strong><%= summary.funnel.joins %></strong></li>
+        <li><span>Contact events:&nbsp;</span><strong><%= summary.funnel.contacts %></strong></li>
+        <li><span>Leads per 1,000 visits:&nbsp;</span><strong><%= summary.quality.leadsPerThousandVisits %></strong></li>
+      </ul>
+    </article>
+  </section>
+</main>
+
+<%- include('../partials/admin-foot') %>

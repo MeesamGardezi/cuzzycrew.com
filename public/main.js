@@ -10,15 +10,31 @@
   var icon = document.getElementById('theme-icon');
   var lbl  = document.getElementById('theme-label');
 
+  function readTheme() {
+    try {
+      return localStorage.getItem('cc-theme');
+    } catch (_error) {
+      return null;
+    }
+  }
+
+  function writeTheme(theme) {
+    try {
+      localStorage.setItem('cc-theme', theme);
+    } catch (_error) {
+      // Ignore storage restrictions so other scripts keep running.
+    }
+  }
+
   function applyTheme(theme) {
     html.setAttribute('data-theme', theme);
-    localStorage.setItem('cc-theme', theme);
+    writeTheme(theme);
     if (icon) icon.textContent = theme === 'dark' ? '☀' : '☽';
     if (lbl)  lbl.textContent  = theme === 'dark' ? 'LIGHT' : 'DARK';
   }
 
   // Apply saved or default theme on load
-  var saved = localStorage.getItem('cc-theme');
+  var saved = readTheme();
   if (saved === 'dark') applyTheme('dark');
 
   if (btn) {
@@ -27,6 +43,37 @@
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
   }
+})();
+
+/* ================================================================
+   MOBILE NAV TOGGLE
+================================================================ */
+(function () {
+  var navLinks = document.querySelector('.nav-links');
+  var navToggle = document.querySelector('[data-nav-toggle]');
+  if (!navLinks || !navToggle) return;
+
+  function setExpanded(expanded) {
+    navToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  }
+
+  navToggle.addEventListener('click', function () {
+    var isOpen = navLinks.classList.toggle('show');
+    setExpanded(isOpen);
+  });
+
+  navLinks.addEventListener('click', function (event) {
+    if (!event.target.closest('a')) return;
+    navLinks.classList.remove('show');
+    setExpanded(false);
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 900) {
+      navLinks.classList.remove('show');
+      setExpanded(false);
+    }
+  });
 })();
 
 /* ================================================================
@@ -84,17 +131,29 @@
 (function () {
   var form = document.getElementById('join-form');
   if (!form) return;
+  if (typeof window.fetch !== 'function') return;
+
+  var input = form.querySelector('.hero-join-input');
+  var msg = document.getElementById('join-msg');
+  var btn = form.querySelector('button[type="submit"]');
+  if (!input || !msg || !btn) return;
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var email  = form.querySelector('.hero-join-input').value.trim();
-    var msg    = document.getElementById('join-msg');
-    var btn    = form.querySelector('.join-submit');
+    var email = input.value.trim();
+
+    if (!email) {
+      msg.textContent = '\u2717 Enter your email first.';
+      msg.className = 'join-msg join-error';
+      return;
+    }
 
     btn.disabled    = true;
     btn.textContent = 'Sending\u2026';
     msg.textContent = '';
     msg.className   = 'join-msg';
+    msg.setAttribute('role', 'status');
+    msg.setAttribute('aria-live', 'polite');
 
     fetch('/join', {
       method:  'POST',
@@ -105,22 +164,22 @@
       .then(function (data) {
         if (data.ok) {
           msg.textContent = data.already
-            ? 'Already signed up.'
-            : 'You\u2019re in.';
+            ? '\u2713 Already signed up.'
+            : '\u2713 You\u2019re in.';
           msg.className = 'join-msg join-success';
           form.reset();
         } else {
-          msg.textContent = data.error || 'Something went wrong.';
+          msg.textContent = '\u2717 ' + (data.error || 'Something went wrong.');
           msg.className   = 'join-msg join-error';
         }
       })
       .catch(function () {
-        msg.textContent = 'Connection issue \u2014 try again.';
+        msg.textContent = '\u2717 Connection issue \u2014 try again.';
         msg.className   = 'join-msg join-error';
       })
       .finally(function () {
         btn.disabled    = false;
-        btn.textContent = 'Join The Crew \u2192';
+        btn.textContent = 'Join \u2192';
       });
   });
 })();

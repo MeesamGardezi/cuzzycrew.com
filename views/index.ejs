@@ -10,6 +10,19 @@
   <div class="hero-inner">
 
     <div class="hero-left">
+      <figure class="hero-portrait-card">
+        <img
+          src="/images/influencer-main.webp"
+          alt="Portrait of Sharikh Naveed"
+          class="hero-portrait-image"
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption class="hero-portrait-caption">@sharikh_naveed</figcaption>
+      </figure>
+    </div>
+
+    <div class="hero-right">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-dot" aria-hidden="true"></div>
         CuzzyCrew
@@ -22,9 +35,7 @@
       </h1>
 
       <p class="hero-catchphrase">&ldquo;Hayyadun Cuzzy&rdquo;</p>
-    </div>
 
-    <div class="hero-right">
       <div class="hero-ornament" aria-hidden="true">
         <div class="hero-ornament-line"></div>
         <div class="hero-ornament-sm"></div>
@@ -56,7 +67,7 @@
       </div>
 
       <div class="hero-join">
-        <form id="join-form" class="hero-join-form" novalidate>
+        <form id="join-form" class="hero-join-form" action="/join" method="POST" novalidate>
           <label class="hero-join-label" for="hero-email">Join CuzzyCrew</label>
           <div class="hero-join-row">
             <input class="hero-join-input" type="email" id="hero-email" name="email"
@@ -223,9 +234,10 @@
                  placeholder="hello@yourbrand.com" required/>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-package">Package Interest</label>
+           <label class="form-label" for="f-package">Package Interest (Optional)</label>
           <input class="form-input" type="text" id="f-package" name="package"
-                 placeholder="La Storia / Il Reel / La Famiglia / Custom"/>
+             placeholder="e.g. La Storia, Il Reel, La Famiglia, or your budget"/>
+           <small class="form-helper">Not sure yet? Leave this blank and explain your goals in the message.</small>
         </div>
         <div class="form-group">
           <label class="form-label" for="f-message">Your Proposition</label>
@@ -242,7 +254,7 @@
 
 <%- include('partials/footer') %>
 
-<script src="/main.js"></script>
+<script src="/main.js?v=20260415b"></script>
 <% if (typeof formScrollTo !== 'undefined' && formScrollTo) { %>
 <script>
   document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -1,0 +1,193 @@
+<%- include('../partials/admin-head') %>
+<%- include('../partials/admin-header') %>
+
+<main class="admin-main" id="main-content">
+  <section class="admin-page-header">
+    <div>
+      <h1 class="admin-page-title">Analytics</h1>
+      <p class="admin-page-copy">Clear performance breakdown for traffic, conversion, source quality, and geography.</p>
+    </div>
+    <div class="admin-inline-actions">
+      <a href="/admin/contacts" class="admin-secondary-button">Open Contacts</a>
+      <a href="/admin" class="admin-secondary-button">Back to Overview</a>
+    </div>
+  </section>
+
+  <section class="admin-panel">
+    <form class="admin-filters" method="GET" action="/admin/analytics">
+      <label class="admin-form-field">
+        <span>Window</span>
+        <select name="range">
+          <option value="today" <%= filters.range === 'today' ? 'selected' : '' %>>Today</option>
+          <option value="7d" <%= filters.range === '7d' ? 'selected' : '' %>>7 days</option>
+          <option value="30d" <%= filters.range === '30d' ? 'selected' : '' %>>30 days</option>
+          <option value="custom" <%= filters.range === 'custom' ? 'selected' : '' %>>Custom</option>
+        </select>
+      </label>
+      <label class="admin-form-field">
+        <span>From</span>
+        <input type="date" name="from" value="<%= filters.from %>"/>
+      </label>
+      <label class="admin-form-field">
+        <span>To</span>
+        <input type="date" name="to" value="<%= filters.to %>"/>
+      </label>
+      <button type="submit" class="admin-primary-button">Update Range</button>
+    </form>
+  </section>
+
+  <section class="admin-kpis" aria-label="Analytics key performance indicators">
+    <article class="admin-kpi-card"><span>Visits</span><strong><%= summary.kpis.totalVisits %></strong><small>Page views</small></article>
+    <article class="admin-kpi-card"><span>Unique</span><strong><%= summary.kpis.uniqueVisitors %></strong><small>Visitor fingerprints</small></article>
+    <article class="admin-kpi-card"><span>Join Conversions</span><strong><%= summary.kpis.joinConversions %></strong><small><%= summary.kpis.visitToJoinRate %>% of visits</small></article>
+    <article class="admin-kpi-card"><span>Contact Conversions</span><strong><%= summary.kpis.contactConversions %></strong><small><%= summary.kpis.visitToContactRate %>% of visits</small></article>
+    <article class="admin-kpi-card"><span>Lead Rate</span><strong><%= summary.funnel.visitToLeadRate %>%</strong><small><%= summary.funnel.leads %> total leads</small></article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Period Comparison</h2>
+      </div>
+      <ul class="admin-insight-list">
+        <li>
+          <span>Visits</span>
+          <strong class="admin-delta <%= Number(summary.comparison.visitsDeltaPct) >= 0 ? 'is-positive' : 'is-negative' %>">
+            <%= Number(summary.comparison.visitsDeltaPct) >= 0 ? '+' : '' %><%= summary.comparison.visitsDeltaPct %>%
+          </strong>
+        </li>
+        <li>
+          <span>Joins</span>
+          <strong class="admin-delta <%= Number(summary.comparison.joinsDeltaPct) >= 0 ? 'is-positive' : 'is-negative' %>">
+            <%= Number(summary.comparison.joinsDeltaPct) >= 0 ? '+' : '' %><%= summary.comparison.joinsDeltaPct %>%
+          </strong>
+        </li>
+        <li>
+          <span>Contacts</span>
+          <strong class="admin-delta <%= Number(summary.comparison.contactsDeltaPct) >= 0 ? 'is-positive' : 'is-negative' %>">
+            <%= Number(summary.comparison.contactsDeltaPct) >= 0 ? '+' : '' %><%= summary.comparison.contactsDeltaPct %>%
+          </strong>
+        </li>
+      </ul>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Quality Signals</h2>
+      </div>
+      <ul class="admin-insight-list">
+        <li><span>Events per visitor:&nbsp;</span><strong><%= summary.quality.eventsPerVisitor %></strong></li>
+        <li><span>Section views per visit:&nbsp;</span><strong><%= summary.quality.sectionViewsPerVisit %></strong></li>
+        <li><span>Leads per 1,000 visits:&nbsp;</span><strong><%= summary.quality.leadsPerThousandVisits %></strong></li>
+        <li><span>Geo coverage:&nbsp;</span><strong><%= summary.quality.geoCoverageRate %>%</strong></li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Daily Trend</h2>
+        <p class="admin-panel-meta">Visits, joins, contacts</p>
+      </div>
+      <% const analyticsMax = Math.max(1, ...summary.dailyTrend.map((day) => Math.max(day.visits, day.joins, day.contacts))); %>
+      <% if (!summary.dailyTrend.length) { %>
+      <p class="admin-empty">No analytics events in this window.</p>
+      <% } else { %>
+      <div class="admin-metric-grid">
+        <% summary.dailyTrend.forEach(function(day) { %>
+        <article class="admin-metric-card">
+          <strong><%= day.date %></strong>
+          <div class="admin-mini-bar"><span style="width:<%= ((day.visits / analyticsMax) * 100).toFixed(2) %>%"></span></div>
+          <small>Visits: <%= day.visits %> · Joins: <%= day.joins %> · Contacts: <%= day.contacts %></small>
+        </article>
+        <% }); %>
+      </div>
+      <% } %>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Conversion Funnel</h2>
+      </div>
+      <ul class="admin-insight-list">
+        <li><span>Visits:&nbsp;</span><strong><%= summary.funnel.visits %></strong></li>
+        <li><span>Join events:&nbsp;</span><strong><%= summary.funnel.joins %></strong></li>
+        <li><span>Contact events:&nbsp;</span><strong><%= summary.funnel.contacts %></strong></li>
+        <li><span>Total leads:&nbsp;</span><strong><%= summary.funnel.leads %></strong></li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Source Mix</h2>
+      </div>
+      <div class="admin-list-stack">
+        <% if (!summary.topSources.length) { %>
+        <p class="admin-empty">Source insights are unavailable for this range.</p>
+        <% } %>
+        <% summary.topSources.forEach(function(source) { %>
+        <div class="admin-list-row"><span><%= source.label %></span><strong><%= source.value %></strong></div>
+        <% }); %>
+      </div>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Top Locations</h2>
+        <p class="admin-panel-meta">Peak day: <%= summary.peakDay.date || 'No data' %><%= summary.peakDay.date ? ' (' + summary.peakDay.visits + ' visits)' : '' %></p>
+      </div>
+      <div class="admin-list-stack">
+        <% if (!summary.topLocations.length) { %>
+        <p class="admin-empty">Location insights are unavailable for this range.</p>
+        <% } %>
+        <% summary.topLocations.forEach(function(location) { %>
+        <div class="admin-list-row"><span><%= location.label %></span><strong><%= location.value %></strong></div>
+        <% }); %>
+      </div>
+    </article>
+  </section>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Section Performance</h2>
+      </div>
+      <% const topSectionValue = Math.max(1, ...summary.sectionPerformance.map((entry) => entry.value || 0)); %>
+      <div class="admin-bar-list">
+        <% if (!summary.sectionPerformance.length) { %>
+        <p class="admin-empty">No section impressions yet.</p>
+        <% } %>
+        <% summary.sectionPerformance.forEach(function(section) { %>
+        <div class="admin-bar-row">
+          <span><%= section.label %></span>
+          <div class="admin-bar-track"><div class="admin-bar-fill" style="width:<%= ((section.value / topSectionValue) * 100).toFixed(2) %>%"></div></div>
+          <strong><%= section.value %></strong>
+        </div>
+        <% }); %>
+      </div>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Devices & Agents</h2>
+      </div>
+      <div class="admin-grid-two compact">
+        <div class="admin-list-stack">
+          <% summary.deviceSummary.forEach(function(device) { %>
+          <div class="admin-list-row"><span><%= device.label %></span><strong><%= device.value %></strong></div>
+          <% }); %>
+        </div>
+        <div class="admin-list-stack">
+          <% summary.agentSummary.forEach(function(agent) { %>
+          <div class="admin-list-row"><span><%= agent.label %></span><strong><%= agent.value %></strong></div>
+          <% }); %>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<%- include('../partials/admin-foot') %>

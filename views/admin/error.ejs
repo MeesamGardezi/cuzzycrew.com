@@ -1,0 +1,16 @@
+<%- include('../partials/admin-head') %>
+<%- include('../partials/admin-header') %>
+
+<main class="admin-main" id="main-content">
+  <section class="admin-panel admin-error-panel">
+    <div class="admin-panel-meta">Admin Error</div>
+    <h1 class="admin-page-title"><%= errorTitle %></h1>
+    <p class="admin-page-copy"><%= errorMessage %></p>
+    <div class="admin-inline-actions">
+      <a href="/admin" class="admin-primary-button">Return to Dashboard</a>
+      <a href="/admin/contacts" class="admin-secondary-button">Open Contacts</a>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/admin-foot') %>

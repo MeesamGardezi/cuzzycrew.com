@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "id": "407c0eaf9dc61598",
+      "type": "auth.login_success",
+      "createdAt": "2026-04-15T16:37:33.716Z",
+      "actor": "admin",
+      "ipHash": "1c38df5014874a495653103594742475212a29c870517e3611a56861a012dd4b"
+    },
+    {
+      "id": "58e1931336ff3fc2",
+      "type": "contact.created",
+      "createdAt": "2026-04-15T16:39:27.556Z",
+      "actor": "public",
+      "email": "kaifnathani@gmail.com",
+      "brand": "Nike",
+      "duplicateOf": "",
+      "spamScore": 0
+    },
+    {
+      "id": "b0e0043f9f7be3b5",
+      "type": "contact.bulk_update",
+      "createdAt": "2026-04-15T16:39:51.761Z",
+      "actor": "admin",
+      "count": 0,
+      "status": "new"
+    },
+    {
+      "id": "21dd0a04b9827c8a",
+      "type": "contact.bulk_update",
+      "createdAt": "2026-04-15T16:39:55.385Z",
+      "actor": "admin",
+      "count": 0,
+      "status": "new"
+    },
+    {
+      "id": "ec1288698f526431",
+      "type": "contact.bulk_update",
+      "createdAt": "2026-04-15T16:40:14.644Z",
+      "actor": "admin",
+      "count": 0,
+      "status": "new"
+    },
+    {
+      "id": "df7f4f04d86a23f0",
+      "type": "contact.bulk_update",
+      "createdAt": "2026-04-15T16:40:48.402Z",
+      "actor": "admin",
+      "count": 0,
+      "status": "in_review"
+    },
+    {
+      "id": "0bd68a100bb0a71e",
+      "type": "contact.exported",
+      "createdAt": "2026-04-15T16:46:00.226Z",
+      "actor": "admin",
+      "count": 1
+    },
+    {
+      "id": "ba18ef28f0e16320",
+      "type": "auth.logout",
+      "createdAt": "2026-04-15T16:52:22.772Z",
+      "actor": "admin",
+      "reason": "manual_logout"
+    },
+    {
+      "id": "ad913f1bcdc8f46a",
+      "type": "auth.login_success",
+      "createdAt": "2026-04-15T16:52:25.731Z",
+      "actor": "admin",
+      "ipHash": "1c38df5014874a495653103594742475212a29c870517e3611a56861a012dd4b"
+    },
+    {
+      "id": "206533d2af368e99",
+      "type": "contact.bulk_update",
+      "createdAt": "2026-04-15T16:55:16.459Z",
+      "actor": "admin",
+      "count": 1,
+      "status": "lost"
+    },
+    {
+      "id": "90dff83358da1bb2",
+      "type": "contact.created",
+      "createdAt": "2026-04-15T16:57:00.114Z",
+      "actor": "public",
+      "email": "kaifnathani@gmail.com",
+      "brand": "ssajasd",
+      "duplicateOf": "",
+      "spamScore": 0
+    },
+    {
+      "id": "bc5a158e7abfbf30",
+      "type": "contact.bulk_update",
+      "createdAt": "2026-04-15T16:57:14.357Z",
+      "actor": "admin",
+      "count": 2,
+      "status": "new"
+    },
+    {
+      "id": "39e7bb5a531610bd",
+      "type": "contact.updated",
+      "createdAt": "2026-04-15T17:14:17.996Z",
+      "actor": "admin",
+      "contactId": "dfaebc9c36267a4c",
+      "status": "contacted"
+    },
+    {
+      "id": "ebe65478172db24c",
+      "type": "contact.updated",
+      "createdAt": "2026-04-15T17:33:49.614Z",
+      "actor": "admin",
+      "contactId": "dfaebc9c36267a4c",
+      "status": "won"
+    },
+    {
+      "id": "59d457032b991633",
+      "type": "contact.exported",
+      "createdAt": "2026-04-15T17:33:53.771Z",
+      "actor": "admin",
+      "count": 2
+    },
+    {
+      "id": "34543cc8295247bc",
+      "type": "contact.updated",
+      "createdAt": "2026-04-15T17:40:55.285Z",
+      "actor": "admin",
+      "contactId": "dfaebc9c36267a4c",
+      "status": "won"
+    },
+    {
+      "id": "a94dedf438de8b49",
+      "type": "subscriber.exported",
+      "createdAt": "2026-04-15T18:14:54.977Z",
+      "actor": "admin",
+      "count": 2
+    }
+  ]
+}

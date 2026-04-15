@@ -1,0 +1,83 @@
+<%- include('../partials/admin-head') %>
+<%- include('../partials/admin-header') %>
+
+<main class="admin-main" id="main-content">
+  <section class="admin-page-header">
+    <div>
+      <h1 class="admin-page-title"><%= contact.brand %></h1>
+      <p class="admin-page-copy"><%= contact.email %> · <%= contact.packageInterest || 'Custom package' %></p>
+    </div>
+    <div class="admin-inline-actions">
+      <span class="admin-status admin-status-<%= contact.status %>"><%= contact.status.replace('_', ' ') %></span>
+      <a href="<%= returnTo %>" class="admin-secondary-button">Back to Inbox</a>
+    </div>
+  </section>
+
+  <% if (uiMessage) { %>
+  <p class="admin-alert" role="status"><%= uiMessage %></p>
+  <% } %>
+
+  <section class="admin-grid-two">
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Original Message</h2>
+      </div>
+      <dl class="admin-detail-list">
+        <div><dt>Created</dt><dd><%= contact.createdAt.replace('T', ' ').slice(0, 16) %></dd></div>
+        <div><dt>Location</dt><dd><%= [contact.ipMetadata?.city, contact.ipMetadata?.region, contact.ipMetadata?.country].filter(Boolean).join(', ') || 'Unknown' %></dd></div>
+        <div><dt>Source</dt><dd><%= contact.source %></dd></div>
+        <div><dt>Spam Flags</dt><dd><%= contact.spamFlags?.join(', ') || 'None' %></dd></div>
+      </dl>
+      <div class="admin-message-card"><%= contact.message %></div>
+    </article>
+
+    <article class="admin-panel">
+      <div class="admin-panel-head">
+        <h2>Update Workflow</h2>
+      </div>
+      <form method="POST" action="/admin/contacts/<%= contact.id %>/update" class="admin-stack-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+        <input type="hidden" name="returnTo" value="<%= returnTo %>"/>
+        <label class="admin-form-field">
+          <span>Status</span>
+          <select name="status">
+            <% ['new','in_review','contacted','won','lost','spam','archived'].forEach(function(status) { %>
+            <option value="<%= status %>" <%= contact.status === status ? 'selected' : '' %>><%= status.replace('_', ' ') %></option>
+            <% }); %>
+          </select>
+        </label>
+        <label class="admin-form-field">
+          <span>Tags (comma-separated)</span>
+          <input type="text" name="tags" value="<%= (contact.tags || []).join(', ') %>" placeholder="vip, retainer, seasonal"/>
+          <small class="admin-subtle">Common tags: vip, high-value, retainer, seasonal. Tags are saved case-insensitive.</small>
+        </label>
+        <label class="admin-form-field">
+          <span>Internal Note</span>
+          <textarea name="note" rows="5" placeholder="What happened next?"></textarea>
+        </label>
+        <button type="submit" class="admin-primary-button">Save Update</button>
+      </form>
+    </article>
+  </section>
+
+  <section class="admin-panel">
+    <div class="admin-panel-head">
+      <h2>Internal Notes</h2>
+    </div>
+    <% if (!contact.notes.length) { %>
+    <p class="admin-empty">No internal notes yet.</p>
+    <% } else { %>
+    <ul class="admin-note-list">
+      <% contact.notes.slice().reverse().forEach(function(note) { %>
+      <li>
+        <strong><%= note.author %></strong>
+        <span><%= note.createdAt.replace('T', ' ').slice(0, 16) %></span>
+        <p><%= note.body %></p>
+      </li>
+      <% }); %>
+    </ul>
+    <% } %>
+  </section>
+</main>
+
+<%- include('../partials/admin-foot') %>

@@ -1,0 +1,17 @@
+<header class="admin-header">
+  <div class="admin-header-row">
+    <a href="/admin" class="admin-logo">CuzzyCrew Admin</a>
+    <div class="admin-header-actions">
+      <span class="admin-user-label">Signed in as <strong><%= adminUser || 'admin' %></strong></span>
+      <form action="/admin/logout" method="POST" class="admin-logout-form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+        <button class="admin-logout-button" type="submit">Sign Out</button>
+      </form>
+    </div>
+  </div>
+  <nav class="admin-nav" aria-label="Admin">
+    <a href="/admin" class="<%= typeof activePage !== 'undefined' && activePage === 'overview' ? 'is-active' : '' %>">Overview</a>
+    <a href="/admin/contacts" class="<%= typeof activePage !== 'undefined' && activePage === 'contacts' ? 'is-active' : '' %>">Contacts</a>
+    <a href="/admin/analytics" class="<%= typeof activePage !== 'undefined' && activePage === 'analytics' ? 'is-active' : '' %>">Analytics</a>
+  </nav>
+</header>
