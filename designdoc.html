@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sharikh Naveed — Design System · Brutalism</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Bebas+Neue&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:     #FFFBF5;
+    --paper:  #FFF8EE;
+
+    --sn-amber-950: #431400;
+    --sn-amber-900: #7C2D00;
+    --sn-amber-800: #C85F00;
+    --sn-amber-700: #EA6C00;
+    --sn-amber-600: #F5841F;
+    --sn-amber-500: #FB9A3C;
+    --sn-amber-400: #FFA94D;
+    --sn-amber-300: #FFCC8A;
+    --sn-amber-200: #FFE4BA;
+    --sn-amber-100: #FFF3E0;
+    --sn-amber-50:  #FFFAF4;
+
+    --ink:     #1A0800;
+    --ink-mid: #5C3410;
+    --ink-lt:  #9A6A3A;
+
+    --color-primary:      #F5841F;
+    --color-primary-dark: #C85F00;
+    --color-success: #16A34A;
+    --color-warning: #D97706;
+    --color-danger:  #DC2626;
+
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-serif:   'DM Serif Display', serif;
+    --font-mono:    'Space Mono', monospace;
+
+    /* Brutalist = thick black borders + hard offset shadows */
+    --border: 2.5px solid #1A0800;
+    --border-thick: 4px solid #1A0800;
+    --shadow-hard-sm:  3px 3px 0 #1A0800;
+    --shadow-hard-md:  5px 5px 0 #1A0800;
+    --shadow-hard-lg:  8px 8px 0 #1A0800;
+    --shadow-amber-sm: 3px 3px 0 #C85F00;
+    --shadow-amber-md: 5px 5px 0 #C85F00;
+    --shadow-amber-lg: 8px 8px 0 #C85F00;
+
+    --r: 0px; /* brutalist = zero radius */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* Subtle grid paper texture */
+    background-image:
+      linear-gradient(rgba(245,132,31,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,132,31,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .page { max-width: 1080px; margin: 0 auto; padding: 64px 40px 120px; }
+  .section { margin-bottom: 88px; }
+  .section-header { display: flex; align-items: center; gap: 0; border: var(--border-thick); margin-bottom: 40px; background: var(--ink); }
+  .section-num { font-family: var(--font-display); font-size: 13px; letter-spacing: 3px; color: #F5841F; flex-shrink: 0; padding: 10px 18px; border-right: var(--border-thick); }
+  .section-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 2px; color: #FFFBF5; padding: 10px 20px; }
+
+  /* HEADER */
+  .doc-header { background: var(--paper); border: var(--border-thick); box-shadow: var(--shadow-hard-lg); padding: 44px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 80px; }
+  .doc-logo-row { display: flex; align-items: center; gap: 18px; }
+  .doc-icon { width: 68px; height: 68px; background: #F5841F; border: var(--border-thick); box-shadow: var(--shadow-hard-sm); display: flex; align-items: center; justify-content: center; }
+  .doc-icon-text { font-family: var(--font-display); font-size: 28px; letter-spacing: 2px; color: var(--ink); }
+  .doc-wordmark { font-family: var(--font-display); font-size: 32px; letter-spacing: 3px; color: var(--ink); }
+  .doc-wordmark span { color: #F5841F; }
+  .doc-tagline { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--ink-lt); margin-top: 5px; }
+  .doc-meta { text-align: right; display: flex; flex-direction: column; gap: 10px; }
+  .doc-meta-key { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-lt); }
+  .doc-meta-val { font-size: 12px; font-weight: 700; color: var(--ink-mid); margin-top: 1px; }
+
+  /* COLOUR */
+  .ramp { display: flex; border: var(--border); box-shadow: var(--shadow-hard-sm); margin-bottom: 10px; }
+  .ramp-stop { flex: 1; padding: 14px 8px 9px; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid rgba(26,8,0,0.15); }
+  .ramp-stop:last-child { border-right: none; }
+  .ramp-stop-name { font-size: 9px; font-weight: 700; opacity: 0.65; font-family: var(--font-mono); }
+  .ramp-stop-hex  { font-size: 8px; font-family: monospace; opacity: 0.55; margin-top: 1px; }
+  .ramp-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 10px; }
+
+  .semantic-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 24px; }
+  .semantic-card { border: var(--border); box-shadow: var(--shadow-hard-sm); padding: 16px; background: var(--paper); }
+  .semantic-swatch { width: 32px; height: 32px; margin-bottom: 10px; border: var(--border); }
+  .semantic-name { font-family: var(--font-display); font-size: 16px; letter-spacing: 1px; }
+  .semantic-hex  { font-size: 10px; font-family: monospace; margin-top: 3px; opacity: 0.7; }
+  .semantic-use  { font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1.5px solid rgba(26,8,0,0.1); opacity: 0.65; line-height: 1.4; }
+
+  /* TYPOGRAPHY */
+  .type-table { border: var(--border-thick); box-shadow: var(--shadow-hard-md); background: var(--paper); }
+  .type-row { display: grid; grid-template-columns: 150px 130px 1fr; align-items: center; padding: 16px 22px; gap: 20px; border-bottom: var(--border); }
+  .type-row:last-child { border-bottom: none; }
+  .type-name { font-family: var(--font-display); font-size: 14px; letter-spacing: 1px; color: #F5841F; }
+  .type-spec  { font-size: 10px; font-family: monospace; color: var(--ink-lt); line-height: 1.6; }
+  .font-showcase { border: var(--border-thick); box-shadow: var(--shadow-hard-md); padding: 36px; margin-bottom: 24px; background: var(--paper); }
+  .font-showcase-name { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5841F; margin-bottom: 20px; }
+  .font-weight-row { display: flex; align-items: baseline; gap: 20px; margin-bottom: 10px; }
+  .font-weight-label { font-size: 9px; font-family: monospace; color: var(--ink-lt); width: 90px; flex-shrink: 0; }
+
+  /* SPACING */
+  .spacing-table { border: var(--border-thick); box-shadow: var(--shadow-hard-md); background: var(--paper); }
+  .spacing-row { display: flex; align-items: center; gap: 20px; padding: 11px 22px; border-bottom: var(--border); }
+  .spacing-row:last-child { border-bottom: none; }
+  .spacing-token { font-size: 11px; font-family: monospace; font-weight: 700; color: var(--ink); width: 110px; flex-shrink: 0; }
+  .spacing-px    { font-size: 10px; color: var(--ink-lt); width: 50px; flex-shrink: 0; font-family: monospace; }
+  .spacing-use   { font-size: 11px; color: var(--ink-lt); }
+  .spacing-bar   { height: 16px; background: #F5841F; flex-shrink: 0; border: 1.5px solid #C85F00; }
+
+  /* COMPONENTS */
+  .comp-section { margin-bottom: 40px; }
+  .comp-label { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #F5841F; margin-bottom: 14px; }
+  .comp-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn { font-family: var(--font-mono); font-weight: 700; font-size: 12px; border: var(--border-thick); cursor: pointer; padding: 10px 22px; display: inline-flex; align-items: center; gap: 7px; transition: transform 0.08s ease, box-shadow 0.08s ease; letter-spacing: 1px; text-transform: uppercase; }
+  .btn:active { transform: translate(3px, 3px); }
+  .btn-primary { background: #F5841F; color: var(--ink); box-shadow: var(--shadow-hard-md); }
+  .btn-primary:active { box-shadow: none; }
+  .btn-outline { background: var(--paper); color: var(--ink); box-shadow: var(--shadow-hard-md); }
+  .btn-outline:active { box-shadow: none; }
+  .btn-ink { background: var(--ink); color: #F5841F; box-shadow: 5px 5px 0 #F5841F; }
+  .btn-ink:active { box-shadow: none; }
+  .btn-amber-outline { background: var(--paper); color: #C85F00; border-color: #C85F00; box-shadow: var(--shadow-amber-md); }
+  .btn-amber-outline:active { box-shadow: none; }
+  .btn-danger { background: #DC2626; color: white; box-shadow: 5px 5px 0 #991B1B; }
+  .btn-danger:active { box-shadow: none; }
+  .btn-sm { padding: 7px 16px; font-size: 11px; }
+  .btn-lg { padding: 14px 30px; font-size: 14px; }
+
+  /* Badges */
+  .badge { font-family: var(--font-mono); font-size: 10px; font-weight: 700; padding: 3px 8px; display: inline-block; letter-spacing: 1px; text-transform: uppercase; border: var(--border); }
+  .badge-amber   { background: #FFF3E0; color: #C85F00; border-color: #C85F00; }
+  .badge-success { background: #DCFCE7; color: #15803D; border-color: #15803D; }
+  .badge-warning { background: #FEF3C7; color: #B45309; border-color: #B45309; }
+  .badge-danger  { background: #FEE2E2; color: #B91C1C; border-color: #B91C1C; }
+  .badge-neutral { background: var(--paper); color: var(--ink-mid); }
+
+  /* Cards */
+  .card-title { font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; margin-bottom: 8px; }
+  .card-body  { font-size: 12px; line-height: 1.65; font-family: var(--font-mono); }
+
+  /* Input */
+  .input { font-family: var(--font-mono); font-size: 13px; font-weight: 700; padding: 11px 14px; border: var(--border-thick); background: var(--paper); color: var(--ink); outline: none; width: 100%; box-shadow: var(--shadow-hard-sm); transition: box-shadow 0.1s, transform 0.1s; }
+  .input:focus { box-shadow: var(--shadow-amber-md); transform: translate(-2px, -2px); }
+  .input::placeholder { color: var(--ink-lt); font-weight: 400; }
+  .input-label { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 8px; }
+
+  /* Status */
+  .status { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; font-family: var(--font-mono); letter-spacing: 0.5px; }
+  .status-dot { width: 10px; height: 10px; flex-shrink: 0; border: 1.5px solid var(--ink); }
+
+  /* Stat cards */
+  .stat-card { border: var(--border-thick); padding: 20px; flex: 1; min-width: 130px; background: var(--paper); box-shadow: var(--shadow-hard-md); }
+  .stat-label { font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-lt); margin-bottom: 8px; }
+  .stat-value { font-family: var(--font-display); font-size: 44px; letter-spacing: -1px; color: var(--ink); line-height: 1; }
+  .stat-sub   { font-family: var(--font-mono); font-size: 11px; color: var(--ink-lt); margin-top: 6px; }
+  .stat-up    { color: var(--color-success); font-weight: 700; }
+  .stat-down  { color: var(--color-danger);  font-weight: 700; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .mt-sm  { margin-top: 10px; }
+
+  /* table */
+  .data-table { border: var(--border-thick); box-shadow: var(--shadow-hard-md); background: var(--paper); overflow: hidden; }
+  .data-table table { width:100%; border-collapse:collapse; font-size:12px; font-family: var(--font-mono); }
+  .data-table thead tr { background: var(--ink); border-bottom: var(--border-thick); }
+  .data-table th { padding:12px 16px; text-align:left; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#FFA94D; }
+  .data-table td { padding:12px 16px; border-bottom: var(--border); font-size: 12px; }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+
+  /* progress */
+  .progress-track { height: 10px; background: var(--paper); border: var(--border); overflow: hidden; }
+  .progress-fill  { height: 100%; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-logo-row">
+      <div class="doc-icon"><div class="doc-icon-text">SN</div></div>
+      <div>
+        <div class="doc-wordmark">Sharikh<span> Naveed</span></div>
+        <div class="doc-tagline">Design System v1.0 · Brutalism</div>
+      </div>
+    </div>
+    <div class="doc-meta">
+      <div><div class="doc-meta-key">Style</div><div class="doc-meta-val">Brutalism · Raw · Hard</div></div>
+      <div><div class="doc-meta-key">Typeface</div><div class="doc-meta-val">Bebas Neue + Space Mono</div></div>
+      <div><div class="doc-meta-key">Version</div><div class="doc-meta-val">April 2026</div></div>
+    </div>
+  </div>
+
+  <!-- 01 COLOUR -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">01</span><span class="section-title">Colour</span></div>
+    <div class="ramp-label">// AMBER — brand, accent, interactive</div>
+    <div class="ramp" style="height:68px;">
+      <div class="ramp-stop" style="background:#431400;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">950</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#431400</span></div>
+      <div class="ramp-stop" style="background:#7C2D00;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">900</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#7C2D00</span></div>
+      <div class="ramp-stop" style="background:#C85F00;border:3px solid #F5841F;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.85);">800★</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.7);">#C85F00</span></div>
+      <div class="ramp-stop" style="background:#EA6C00;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.7);">700</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.6);">#EA6C00</span></div>
+      <div class="ramp-stop" style="background:#F5841F;border:3px solid #C85F00;"><span class="ramp-stop-name" style="color:rgba(30,8,0,0.7);">600★</span><span class="ramp-stop-hex" style="color:rgba(30,8,0,0.6);">#F5841F</span></div>
+      <div class="ramp-stop" style="background:#FB9A3C;"><span class="ramp-stop-name" style="color:rgba(80,30,0,0.5);">500</span><span class="ramp-stop-hex" style="color:rgba(80,30,0,0.4);">#FB9A3C</span></div>
+      <div class="ramp-stop" style="background:#FFA94D;"><span class="ramp-stop-name" style="color:rgba(80,30,0,0.5);">400</span><span class="ramp-stop-hex" style="color:rgba(80,30,0,0.4);">#FFA94D</span></div>
+      <div class="ramp-stop" style="background:#FFCC8A;"><span class="ramp-stop-name" style="color:rgba(60,20,0,0.45);">300</span><span class="ramp-stop-hex" style="color:rgba(60,20,0,0.35);">#FFCC8A</span></div>
+      <div class="ramp-stop" style="background:#FFE4BA;"><span class="ramp-stop-name" style="color:rgba(60,20,0,0.4);">200</span><span class="ramp-stop-hex" style="color:rgba(60,20,0,0.3);">#FFE4BA</span></div>
+      <div class="ramp-stop" style="background:#FFF3E0;"><span class="ramp-stop-name" style="color:rgba(60,20,0,0.35);">100</span><span class="ramp-stop-hex" style="color:rgba(60,20,0,0.25);">#FFF3E0</span></div>
+      <div class="ramp-stop" style="background:#FFFAF4;"><span class="ramp-stop-name" style="color:rgba(60,20,0,0.3);">50</span><span class="ramp-stop-hex" style="color:rgba(60,20,0,0.22);">#FFFAF4</span></div>
+    </div>
+    <div class="ramp-label" style="margin-top:22px;">// INK — text, surfaces, dark UI</div>
+    <div class="ramp" style="height:68px;">
+      <div class="ramp-stop" style="background:#1A0800;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">950</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#1A0800</span></div>
+      <div class="ramp-stop" style="background:#2D1400;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">900</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#2D1400</span></div>
+      <div class="ramp-stop" style="background:#3D2200;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">800</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#3D2200</span></div>
+      <div class="ramp-stop" style="background:#5C3410;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">700</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#5C3410</span></div>
+      <div class="ramp-stop" style="background:#7A4E22;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">600</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#7A4E22</span></div>
+      <div class="ramp-stop" style="background:#9A6A3A;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.5);">500</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.4);">#9A6A3A</span></div>
+      <div class="ramp-stop" style="background:#B98B58;"><span class="ramp-stop-name" style="color:rgba(255,255,255,0.6);">400</span><span class="ramp-stop-hex" style="color:rgba(255,255,255,0.5);">#B98B58</span></div>
+      <div class="ramp-stop" style="background:#D4AE85;"><span class="ramp-stop-name" style="color:rgba(40,15,0,0.4);">300</span><span class="ramp-stop-hex" style="color:rgba(40,15,0,0.3);">#D4AE85</span></div>
+      <div class="ramp-stop" style="background:#E8D0B0;"><span class="ramp-stop-name" style="color:rgba(40,15,0,0.35);">200</span><span class="ramp-stop-hex" style="color:rgba(40,15,0,0.25);">#E8D0B0</span></div>
+      <div class="ramp-stop" style="background:#F5EAD8;"><span class="ramp-stop-name" style="color:rgba(40,15,0,0.3);">100</span><span class="ramp-stop-hex" style="color:rgba(40,15,0,0.2);">#F5EAD8</span></div>
+      <div class="ramp-stop" style="background:#FFFBF5;"><span class="ramp-stop-name" style="color:rgba(40,15,0,0.25);">50</span><span class="ramp-stop-hex" style="color:rgba(40,15,0,0.18);">#FFFBF5</span></div>
+    </div>
+    <div class="semantic-grid">
+      <div class="semantic-card"><div class="semantic-swatch" style="background:#16A34A;"></div><div class="semantic-name" style="color:#15803D;">SUCCESS</div><div class="semantic-hex">#16A34A</div><div class="semantic-use">Active · Confirmed · Live</div></div>
+      <div class="semantic-card"><div class="semantic-swatch" style="background:#D97706;"></div><div class="semantic-name" style="color:#B45309;">WARNING</div><div class="semantic-hex">#D97706</div><div class="semantic-use">Pending · Review</div></div>
+      <div class="semantic-card"><div class="semantic-swatch" style="background:#DC2626;"></div><div class="semantic-name" style="color:#B91C1C;">DANGER</div><div class="semantic-hex">#DC2626</div><div class="semantic-use">Overdue · Critical</div></div>
+      <div class="semantic-card"><div class="semantic-swatch" style="background:#F5841F;"></div><div class="semantic-name" style="color:#C85F00;">BRAND</div><div class="semantic-hex">#F5841F</div><div class="semantic-use">Primary · CTA · Link</div></div>
+    </div>
+  </div>
+
+  <!-- 02 TYPOGRAPHY -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">02</span><span class="section-title">Typography</span></div>
+    <div class="font-showcase">
+      <div class="font-showcase-name">// BEBAS NEUE — display</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:#1A0800;letter-spacing:4px;margin-bottom:4px;">THE ACCENT</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:#F5841F;letter-spacing:3px;margin-bottom:24px;">SHARIKH NAVEED</div>
+      <div style="border-top:2px solid #1A0800;padding-top:20px;margin-bottom:20px;">
+        <div class="font-showcase-name" style="margin-bottom:12px;">// SPACE MONO — body, UI, data</div>
+        <div class="font-weight-row"><span class="font-weight-label">400 regular</span><span style="font-size:16px;font-weight:400;color:#3D2200;font-family:'Space Mono',monospace;">Pakistani creator. Italian-NY accent. Global reach.</span></div>
+        <div class="font-weight-row"><span class="font-weight-label">700 bold</span><span style="font-size:16px;font-weight:700;color:#3D2200;font-family:'Space Mono',monospace;">Pakistani creator. Italian-NY accent. Global reach.</span></div>
+        <div class="font-weight-row"><span class="font-weight-label">400 italic</span><span style="font-size:16px;font-weight:400;font-style:italic;color:#3D2200;font-family:'Space Mono',monospace;">Pakistani creator. Italian-NY accent. Global reach.</span></div>
+      </div>
+      <div style="border-top:2px solid #1A0800;padding-top:14px;">
+        <div style="font-size:12px;font-family:'Space Mono',monospace;color:#7A4E22;line-height:1.8;">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br/>a b c d e f g h i j k l m n o p q r s t u v w x y z<br/>0 1 2 3 4 5 6 7 8 9 · $ % # @ &amp; ! ? ( ) + - = / .</div>
+      </div>
+    </div>
+    <div class="type-table">
+      <div class="type-row"><div><div class="type-name">DISPLAY</div></div><div class="type-spec">80px · Bebas Neue<br/>letter-spacing 4px</div><div style="font-family:'Bebas Neue',sans-serif;font-size:62px;letter-spacing:3px;line-height:1;color:#1A0800;">THE GUY</div></div>
+      <div class="type-row"><div><div class="type-name">H1</div></div><div class="type-spec">48px · Bebas Neue</div><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:2px;color:#1A0800;">Creator Profile</div></div>
+      <div class="type-row"><div><div class="type-name">H2</div></div><div class="type-spec">32px · Bebas Neue</div><div style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1.5px;color:#1A0800;">Collab Packages</div></div>
+      <div class="type-row"><div><div class="type-name">BODY LG</div></div><div class="type-spec">16px · 400 · lh 1.7</div><div style="font-size:16px;font-family:'Space Mono',monospace;line-height:1.7;color:#5C3410;">Pakistani creator. Voice that crosses borders.</div></div>
+      <div class="type-row"><div><div class="type-name">BODY</div></div><div class="type-spec">13px · 400 · lh 1.7</div><div style="font-size:13px;font-family:'Space Mono',monospace;line-height:1.7;color:#5C3410;">Accent comedy, lifestyle content, brand integrations.</div></div>
+      <div class="type-row"><div><div class="type-name">LABEL</div></div><div class="type-spec">9px · 700 · caps<br/>tracking 3px</div><div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#F5841F;font-family:'Space Mono',monospace;">REACH · ENGAGEMENT · COUNTRIES</div></div>
+      <div class="type-row"><div><div class="type-name">MONO</div></div><div class="type-spec">monospace · 12px</div><div style="font-family:monospace;font-size:12px;color:#5C3410;">@sharikh_naveed · 500K+ reach · 8.4% ER</div></div>
+    </div>
+  </div>
+
+  <!-- 03 SPACING -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">03</span><span class="section-title">Spacing</span></div>
+    <div class="spacing-table">
+      <div class="spacing-row"><div class="spacing-bar" style="width:4px;"></div><span class="spacing-token">--space-1</span><span class="spacing-px">4px</span><span class="spacing-use">Icon gaps</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:8px;"></div><span class="spacing-token">--space-2</span><span class="spacing-px">8px</span><span class="spacing-use">Badge padding</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:12px;"></div><span class="spacing-token">--space-3</span><span class="spacing-px">12px</span><span class="spacing-use">Input inner padding</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:16px;"></div><span class="spacing-token">--space-4</span><span class="spacing-px">16px</span><span class="spacing-use">Base unit</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:24px;"></div><span class="spacing-token">--space-6</span><span class="spacing-px">24px</span><span class="spacing-use">Card padding lg, grid gaps</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:32px;"></div><span class="spacing-token">--space-8</span><span class="spacing-px">32px</span><span class="spacing-use">Section inner padding</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:48px;"></div><span class="spacing-token">--space-12</span><span class="spacing-px">48px</span><span class="spacing-use">Section header gap</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:64px;"></div><span class="spacing-token">--space-16</span><span class="spacing-px">64px</span><span class="spacing-use">Between page sections</span></div>
+      <div class="spacing-row"><div class="spacing-bar" style="width:80px;"></div><span class="spacing-token">--space-20</span><span class="spacing-px">80px</span><span class="spacing-use">Page padding</span></div>
+    </div>
+  </div>
+
+  <!-- 04 BORDER RADIUS -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">04</span><span class="section-title">Border radius</span></div>
+    <div style="background:var(--paper);border:var(--border-thick);box-shadow:var(--shadow-hard-md);padding:36px;display:flex;gap:32px;flex-wrap:wrap;align-items:flex-end;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:80px;height:80px;background:#FFF3E0;border:var(--border-thick);"></div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">--r · 0px<br/>NO RADIUS<br/>brutalist rule</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:120px;height:44px;background:#F5841F;border:var(--border-thick);"></div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">button shape<br/>0px radius<br/>hard rect</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:80px;height:80px;background:#1A0800;border:var(--border-thick);"></div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">dark surface<br/>0px radius<br/>hard rect</div></div>
+      <div style="padding:16px;background:#FFF3E0;border:var(--border-thick);max-width:200px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:#F5841F;">NOTE</div><div style="font-size:11px;font-family:'Space Mono',monospace;color:#5C3410;line-height:1.6;margin-top:6px;">Brutalism uses zero border radius everywhere. Hard corners are a non-negotiable principle — they define the aesthetic.</div></div>
+    </div>
+  </div>
+
+  <!-- 05 ELEVATION -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">05</span><span class="section-title">Elevation &amp; shadow</span></div>
+    <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-end;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:110px;height:90px;background:var(--paper);border:var(--border-thick);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#9A6A3A;text-align:center;">Flat</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">no shadow</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:110px;height:90px;background:var(--paper);border:var(--border-thick);box-shadow:var(--shadow-hard-sm);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#7A4E22;text-align:center;">Hard sm</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">3px 3px 0</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:120px;height:100px;background:var(--paper);border:var(--border-thick);box-shadow:var(--shadow-hard-md);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#5C3410;text-align:center;">Hard md</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">5px 5px 0</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:130px;height:110px;background:var(--paper);border:var(--border-thick);box-shadow:var(--shadow-hard-lg);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#3D2200;text-align:center;">Hard lg</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">8px 8px 0</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:110px;height:90px;background:#F5841F;border:var(--border-thick);box-shadow:var(--shadow-hard-md);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#1A0800;text-align:center;">Amber + hard</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">brand surface</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:110px;height:90px;background:var(--paper);border:2px solid #C85F00;box-shadow:var(--shadow-amber-md);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#C85F00;text-align:center;">Amber shadow</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">--shadow-amber-md</div></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;"><div style="width:110px;height:90px;background:#1A0800;border:var(--border-thick);box-shadow:5px 5px 0 #F5841F;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:#F5841F;text-align:center;">Dark + amber</div><div style="font-size:9px;font-family:monospace;color:#9A6A3A;text-align:center;">high contrast</div></div>
+    </div>
+  </div>
+
+  <!-- 06 COMPONENTS -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">06</span><span class="section-title">Components</span></div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Buttons</div>
+      <div class="comp-row">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-outline">Outline</button>
+        <button class="btn btn-ink">Ink</button>
+        <button class="btn btn-amber-outline">Amber</button>
+        <button class="btn btn-danger">Danger</button>
+      </div>
+      <div class="comp-row mt-sm">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Badges</div>
+      <div class="comp-row">
+        <span class="badge badge-amber">Brand collab</span>
+        <span class="badge badge-success">Active</span>
+        <span class="badge badge-warning">Pending</span>
+        <span class="badge badge-danger">Declined</span>
+        <span class="badge badge-neutral">Draft</span>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Stat cards</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div class="stat-card"><div class="stat-label">Total reach</div><div class="stat-value">500K</div><div class="stat-sub"><span class="stat-up">↑ 18%</span> this month</div></div>
+        <div class="stat-card"><div class="stat-label">Engagement</div><div class="stat-value">8.4%</div><div class="stat-sub"><span class="stat-up">↑ 2.1%</span></div></div>
+        <div class="stat-card"><div class="stat-label">Countries</div><div class="stat-value">40+</div><div class="stat-sub">Global audience</div></div>
+        <div class="stat-card"><div class="stat-label">Reels</div><div class="stat-value">200+</div><div class="stat-sub">Published</div></div>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Cards</div>
+      <div class="grid-2">
+        <div style="border:var(--border-thick);padding:24px;background:var(--paper);box-shadow:var(--shadow-hard-md);"><div class="card-title">FLAT CARD</div><div class="card-body" style="color:#5C3410;">Standard surface with hard border and offset shadow. Default for all content panels.</div></div>
+        <div style="border:var(--border-thick);padding:24px;background:#F5841F;box-shadow:var(--shadow-hard-md);"><div class="card-title">AMBER CARD</div><div class="card-body" style="color:#1A0800;">Brand surface. Use for primary CTAs, featured content, and hero callouts.</div></div>
+        <div style="border:var(--border-thick);padding:24px;background:#1A0800;box-shadow:5px 5px 0 #F5841F;"><div class="card-title" style="color:#F5841F;">INK CARD</div><div class="card-body" style="color:#9A6A3A;">High contrast dark surface with amber offset shadow for maximum impact.</div></div>
+        <div style="border:2px solid #C85F00;padding:24px;background:var(--paper);box-shadow:var(--shadow-amber-md);"><div class="card-title" style="color:#C85F00;">AMBER BORDER</div><div class="card-body" style="color:#5C3410;">Featured with amber border and amber shadow. For selected / highlighted states.</div></div>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Form inputs</div>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:380px;">
+        <div><div class="input-label">Brand name</div><input class="input" type="text" placeholder="e.g. Nike, Pepsi, Careem"/></div>
+        <div><div class="input-label">Campaign budget</div><input class="input" type="text" value="PKR 150,000"/></div>
+        <div><div class="input-label">Contact email</div><input class="input" type="text" placeholder="hello@yourbrand.com"/></div>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Status indicators</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <span class="status"><span class="status-dot" style="background:#16A34A;border-color:#15803D;"></span>Campaign live</span>
+        <span class="status"><span class="status-dot" style="background:#D97706;border-color:#B45309;"></span>Awaiting approval</span>
+        <span class="status"><span class="status-dot" style="background:#DC2626;border-color:#B91C1C;"></span>Declined</span>
+        <span class="status"><span class="status-dot" style="background:#F5841F;border-color:#C85F00;"></span>In negotiation</span>
+        <span class="status"><span class="status-dot" style="background:var(--paper);"></span>Draft</span>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Data table</div>
+      <div class="data-table">
+        <table>
+          <thead><tr><th>Brand</th><th>Type</th><th>Value</th><th>Due</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:700;color:#1A0800;">Nike PK</td><td style="color:#5C3410;">Dedicated reel</td><td style="font-family:monospace;font-weight:700;color:#1A0800;">PKR 180K</td><td style="color:#5C3410;">20 Apr 2026</td><td><span class="badge badge-success">Active</span></td></tr>
+            <tr><td style="font-weight:700;color:#1A0800;">Careem</td><td style="color:#5C3410;">Story series</td><td style="font-family:monospace;font-weight:700;color:#1A0800;">PKR 80K</td><td style="color:#5C3410;">01 May 2026</td><td><span class="badge badge-amber">In review</span></td></tr>
+            <tr><td style="font-weight:700;color:#1A0800;">Pepsi Co.</td><td style="color:#5C3410;">Campaign pkg</td><td style="font-family:monospace;font-weight:700;color:#1A0800;">PKR 320K</td><td style="color:#DC2626;font-weight:700;">10 Mar 2026</td><td><span class="badge badge-danger">Overdue</span></td></tr>
+            <tr><td style="font-weight:700;color:#1A0800;">Foodpanda</td><td style="color:#5C3410;">Reel + story</td><td style="font-family:monospace;font-weight:700;color:#1A0800;">PKR 120K</td><td style="color:#5C3410;">15 Jun 2026</td><td><span class="badge badge-warning">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Progress bars</div>
+      <div style="display:flex;flex-direction:column;gap:14px;max-width:480px;">
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:11px;font-weight:700;font-family:'Space Mono',monospace;color:#1A0800;text-transform:uppercase;letter-spacing:1px;">Instagram</span><span style="font-size:11px;font-family:monospace;color:#7A4E22;font-weight:700;">68%</span></div><div class="progress-track"><div class="progress-fill" style="width:68%;background:#F5841F;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:11px;font-weight:700;font-family:'Space Mono',monospace;color:#1A0800;text-transform:uppercase;letter-spacing:1px;">TikTok</span><span style="font-size:11px;font-family:monospace;color:#7A4E22;font-weight:700;">45%</span></div><div class="progress-track"><div class="progress-fill" style="width:45%;background:#C85F00;"></div></div></div>
+        <div><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:11px;font-weight:700;font-family:'Space Mono',monospace;color:#1A0800;text-transform:uppercase;letter-spacing:1px;">YouTube</span><span style="font-size:11px;font-family:monospace;color:#7A4E22;font-weight:700;">22%</span></div><div class="progress-track"><div class="progress-fill" style="width:22%;background:#9A6A3A;"></div></div></div>
+      </div>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-label">// Alerts</div>
+      <div style="display:flex;flex-direction:column;gap:12px;max-width:480px;">
+        <div style="display:flex;align-items:flex-start;gap:14px;background:#DCFCE7;border:var(--border-thick);border-left:6px solid #16A34A;box-shadow:var(--shadow-hard-sm);padding:14px 16px;"><div style="width:8px;height:8px;background:#16A34A;border:1.5px solid #15803D;margin-top:5px;flex-shrink:0;"></div><div><div style="font-size:12px;font-weight:700;font-family:'Space Mono',monospace;color:#15803D;text-transform:uppercase;letter-spacing:1px;">Collab confirmed</div><div style="font-size:11px;font-family:'Space Mono',monospace;color:#166534;margin-top:4px;">Nike PK campaign approved. Brief shared.</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:14px;background:#FFF3E0;border:var(--border-thick);border-left:6px solid #F5841F;box-shadow:var(--shadow-amber-sm);padding:14px 16px;"><div style="width:8px;height:8px;background:#F5841F;border:1.5px solid #C85F00;margin-top:5px;flex-shrink:0;"></div><div><div style="font-size:12px;font-weight:700;font-family:'Space Mono',monospace;color:#C85F00;text-transform:uppercase;letter-spacing:1px;">New enquiry</div><div style="font-size:11px;font-family:'Space Mono',monospace;color:#7C2D00;margin-top:4px;">Foodpanda wants to discuss a campaign package.</div></div></div>
+        <div style="display:flex;align-items:flex-start;gap:14px;background:#FEE2E2;border:var(--border-thick);border-left:6px solid #DC2626;box-shadow:var(--shadow-hard-sm);padding:14px 16px;"><div style="width:8px;height:8px;background:#DC2626;border:1.5px solid #B91C1C;margin-top:5px;flex-shrink:0;"></div><div><div style="font-size:12px;font-weight:700;font-family:'Space Mono',monospace;color:#B91C1C;text-transform:uppercase;letter-spacing:1px;">Payment overdue</div><div style="font-size:11px;font-family:'Space Mono',monospace;color:#991B1B;margin-top:4px;">Pepsi Co. invoice PKR 320K is 14 days past due.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 GRID -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">07</span><span class="section-title">Grid system</span></div>
+    <div style="border:var(--border-thick);box-shadow:var(--shadow-hard-md);padding:32px;background:var(--paper);display:flex;flex-direction:column;gap:16px;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#F5841F;margin-bottom:4px;">// 12-COLUMN · 1080PX MAX · 24PX GUTTER · 40PX PAGE MARGIN</div>
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;"><div style="grid-column:span 12;background:#FFF3E0;border:var(--border);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#C85F00;text-align:center;">span 12</div></div>
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;"><div style="grid-column:span 6;background:#FFF3E0;border:var(--border);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#C85F00;text-align:center;">span 6</div><div style="grid-column:span 6;background:#FFF3E0;border:var(--border);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#C85F00;text-align:center;">span 6</div></div>
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;"><div style="grid-column:span 4;background:#FFF3E0;border:var(--border);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#C85F00;text-align:center;">span 4</div><div style="grid-column:span 4;background:#FFF3E0;border:var(--border);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#C85F00;text-align:center;">span 4</div><div style="grid-column:span 4;background:#FFF3E0;border:var(--border);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#C85F00;text-align:center;">span 4</div></div>
+      <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;"><div style="grid-column:span 8;background:#F5841F;border:var(--border-thick);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#1A0800;text-align:center;">span 8 — main</div><div style="grid-column:span 4;background:#1A0800;border:var(--border-thick);padding:10px;font-size:10px;font-weight:700;font-family:monospace;color:#F5841F;text-align:center;">span 4 — side</div></div>
+    </div>
+  </div>
+
+  <!-- 08 PRINCIPLES -->
+  <div class="section">
+    <div class="section-header"><span class="section-num">08</span><span class="section-title">Design principles</span></div>
+    <div class="grid-3">
+      <div style="border:var(--border-thick);padding:28px;background:var(--paper);box-shadow:var(--shadow-hard-md);"><div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#F5841F;line-height:1;margin-bottom:14px;">01</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#1A0800;margin-bottom:8px;">No radius. Ever.</div><div style="font-size:12px;font-family:'Space Mono',monospace;color:#5C3410;line-height:1.65;">Zero border-radius is a hard rule. Hard corners communicate authority and raw confidence.</div></div>
+      <div style="border:var(--border-thick);padding:28px;background:var(--paper);box-shadow:var(--shadow-hard-md);"><div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#F5841F;line-height:1;margin-bottom:14px;">02</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#1A0800;margin-bottom:8px;">Borders are structure.</div><div style="font-size:12px;font-family:'Space Mono',monospace;color:#5C3410;line-height:1.65;">Every element has a visible border. Borders at 2.5px minimum. Headers and feature elements at 4px.</div></div>
+      <div style="border:var(--border-thick);padding:28px;background:var(--paper);box-shadow:var(--shadow-hard-md);"><div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#F5841F;line-height:1;margin-bottom:14px;">03</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#1A0800;margin-bottom:8px;">Offset shadow only.</div><div style="font-size:12px;font-family:'Space Mono',monospace;color:#5C3410;line-height:1.65;">Shadows are hard offset — never blurred. X Y 0. No softness. Shadow makes things feel pressed into the page.</div></div>
+      <div style="border:var(--border-thick);padding:28px;background:#F5841F;box-shadow:var(--shadow-hard-md);"><div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#1A0800;line-height:1;margin-bottom:14px;">04</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#1A0800;margin-bottom:8px;">Amber is loud.</div><div style="font-size:12px;font-family:'Space Mono',monospace;color:#3D2200;line-height:1.65;">Use amber surfaces for primary actions only. Don't dilute it. When you see amber, you should know it matters.</div></div>
+      <div style="border:var(--border-thick);padding:28px;background:var(--paper);box-shadow:var(--shadow-hard-md);"><div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#F5841F;line-height:1;margin-bottom:14px;">05</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#1A0800;margin-bottom:8px;">Mono for body.</div><div style="font-size:12px;font-family:'Space Mono',monospace;color:#5C3410;line-height:1.65;">All body copy in Space Mono. Monospace feels raw, technical, and honest. Bebas Neue handles all display type.</div></div>
+      <div style="border:var(--border-thick);padding:28px;background:#1A0800;box-shadow:5px 5px 0 #F5841F;"><div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:#F5841F;line-height:1;margin-bottom:14px;">06</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:#FFF3E0;margin-bottom:8px;">Press = active.</div><div style="font-size:12px;font-family:'Space Mono',monospace;color:#9A6A3A;line-height:1.65;">Active/pressed state: element moves 3–5px toward shadow. Shadow disappears. Pure mechanical feedback.</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

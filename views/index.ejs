@@ -1,0 +1,252 @@
+<%- include('partials/head') %>
+
+<%- include('partials/nav') %>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="home">
+  <div class="hero-veins" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot" aria-hidden="true"></div>
+        CuzzyCrew
+        <div class="hero-eyebrow-dot" aria-hidden="true"></div>
+      </div>
+
+      <h1>
+        <span class="hero-name">Sharikh</span>
+        <span class="hero-name-accent">Naveed</span>
+      </h1>
+
+      <p class="hero-catchphrase">&ldquo;Hayyadun Cuzzy&rdquo;</p>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-ornament" aria-hidden="true">
+        <div class="hero-ornament-line"></div>
+        <div class="hero-ornament-sm"></div>
+        <div class="hero-ornament-diamond"></div>
+        <div class="hero-ornament-sm"></div>
+        <div class="hero-ornament-line r"></div>
+      </div>
+
+      <!-- Live Instagram followers — count resolved server-side -->
+      <div class="ig-counter" role="status" aria-live="polite" aria-label="Live Instagram follower count">
+        <div class="ig-left">
+          <div class="ig-live-dot" aria-hidden="true"></div>
+          <div class="ig-live-text">Live</div>
+        </div>
+        <div class="ig-right">
+          <div class="ig-count" id="ig-count"><%= igFollowers %></div>
+          <div class="ig-count-label">Instagram Followers</div>
+          <div class="ig-handle"><%= creator.handle %></div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="<%= creator.igUrl %>" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+          View Instagram &#8599;
+        </a>
+        <a href="<%= shopUrl %>" target="_blank" rel="noopener noreferrer" class="btn-hero-ghost">
+          Shop Merch &#8599;
+        </a>
+      </div>
+
+      <div class="hero-join">
+        <form id="join-form" class="hero-join-form" novalidate>
+          <label class="hero-join-label" for="hero-email">Join CuzzyCrew</label>
+          <div class="hero-join-row">
+            <input class="hero-join-input" type="email" id="hero-email" name="email"
+                   placeholder="your@email.com" autocomplete="email" required/>
+            <button class="hero-join-btn" type="submit">Join &rarr;</button>
+          </div>
+          <div class="join-msg" id="join-msg" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</header>
+
+<!-- ===================== BIO ===================== -->
+<section class="bio" id="bio">
+  <div class="bio-inner">
+    <div>
+      <div class="bio-eyebrow">// Bio</div>
+      <h2 class="bio-heading">Sharikh<br/><span>Naveed</span></h2>
+      <% creator.bio.forEach(function(para) { %>
+      <p class="bio-body"><%= para %></p>
+      <% }); %>
+      <blockquote class="bio-quote">
+        <p class="bio-quote-text"><%= creator.quote %></p>
+        <footer class="bio-quote-attr">&mdash; <%= creator.name %></footer>
+      </blockquote>
+    </div>
+
+    <div>
+      <div class="bio-card">
+        <div class="bio-monogram" aria-label="<%= creator.name %> monogram">
+          <div class="bio-monogram-text" aria-hidden="true">SN</div>
+        </div>
+        <div class="bio-card-footer"><%= creator.handle %> &middot; 2023&ndash;</div>
+        <div class="bio-mini-stats">
+          <% creator.miniStats.forEach(function(ms) { %>
+          <div class="bio-mini-stat">
+            <div class="bio-mini-val"><%= ms.value %></div>
+            <div class="bio-mini-label"><%= ms.label %></div>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OPERATION ===================== -->
+<section class="operation" id="operation">
+  <div class="operation-inner">
+    <div class="operation-eyebrow">// Content</div>
+    <h2 class="operation-heading">What He<br/><span>Makes</span></h2>
+
+    <div class="niches-grid">
+      <% niches.forEach(function(n) { %>
+      <div class="niche">
+        <div class="niche-num" aria-hidden="true"><%= n.num %></div>
+        <h3 class="niche-title"><%- n.title %></h3>
+        <p class="niche-desc"><%= n.desc %></p>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLATFORMS ===================== -->
+<section class="platforms" id="platforms">
+  <div class="platforms-inner">
+    <div class="platforms-eyebrow">// Platforms</div>
+    <h2 class="platforms-heading">Where He Posts</h2>
+
+    <div class="platforms-grid">
+      <% platforms.forEach(function(p) { %>
+      <div class="platform-col">
+        <div class="platform-name"><%= p.name %></div>
+        <div class="plat-bar">
+          <div class="plat-bar-top">
+            <span class="plat-bar-name">Reach Share</span>
+            <span class="plat-bar-pct"><%= p.reachPct %>%</span>
+          </div>
+          <div class="plat-bar-track">
+            <div class="plat-bar-fill" style="width:<%= p.reachPct %>%"></div>
+          </div>
+        </div>
+        <div class="plat-bar">
+          <div class="plat-bar-top">
+            <span class="plat-bar-name"><%= p.engLabel %></span>
+            <span class="plat-bar-pct"><%= p.engVal %></span>
+          </div>
+          <div class="plat-bar-track">
+            <div class="plat-bar-fill" style="width:<%= p.engPct %>%"></div>
+          </div>
+        </div>
+        <p class="platform-desc"><%= p.desc %></p>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+
+    <div>
+      <div class="contact-eyebrow">// Contact</div>
+      <h2 class="contact-heading">Work<br/><span>Together.</span></h2>
+      <p class="contact-desc">
+        Collab inquiries, brand deals, or anything else &mdash; fill out the form and expect a reply within 24 hours.
+      </p>
+      <div class="contact-details">
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">&#128241;</div>
+          <div>
+            <div class="contact-row-label">Instagram</div>
+            <a href="<%= creator.igUrl %>" target="_blank" rel="noopener noreferrer" class="contact-row-val"><%= creator.handle %></a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">&#127757;</div>
+          <div>
+            <div class="contact-row-label">Based In</div>
+            <span>Pakistan &middot; Available Worldwide</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">&#9889;</div>
+          <div>
+            <div class="contact-row-label">Response Time</div>
+            <span>Within 24 hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-heading">Make Your Move</div>
+
+      <% if (typeof formSuccess !== 'undefined' && formSuccess) { %>
+      <div class="form-success visible" role="alert">
+        &#10022;&nbsp; Message received. We&rsquo;ll be in touch within 24 hours.
+      </div>
+      <% } else { %>
+
+      <% if (typeof formError !== 'undefined' && formError) { %>
+      <div class="form-error" role="alert"><%= formError %></div>
+      <% } %>
+
+      <form id="collab-form" action="/contact" method="POST" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="f-brand">Brand / Company Name</label>
+          <input class="form-input" type="text" id="f-brand" name="brand" autocomplete="organization"
+                 placeholder="e.g. Nike, Pepsi, Local Brand" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-email">Email Address</label>
+          <input class="form-input" type="email" id="f-email" name="email" autocomplete="email"
+                 placeholder="hello@yourbrand.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-package">Package Interest</label>
+          <input class="form-input" type="text" id="f-package" name="package"
+                 placeholder="La Storia / Il Reel / La Famiglia / Custom"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-message">Your Proposition</label>
+          <textarea class="form-input form-textarea" id="f-message" name="message"
+                    placeholder="Tell us about your brand, campaign goals, and timeline..." required></textarea>
+        </div>
+        <button class="form-submit" type="submit">Send The Message &rarr;</button>
+      </form>
+      <% } %>
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+
+<script src="/main.js"></script>
+<% if (typeof formScrollTo !== 'undefined' && formScrollTo) { %>
+<script>
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+</script>
+<% } %>
+</body>
+</html>

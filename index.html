@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Sharikh Naveed — Pakistani creator with Italian-NY accent. 500K+ reach across 40+ countries. Brand collabs open."/>
+  <title>Sharikh Naveed · Il Creatore · CuzzyCrew</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Bebas+Neue&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — from CuzzyCrew Design System (designdoc.html)
+    ============================================================ */
+    :root {
+      --bg:    #FFFBF5;
+      --paper: #FFF8EE;
+
+      /* Amber brand palette */
+      --amber-950: #431400;
+      --amber-900: #7C2D00;
+      --amber-800: #C85F00;
+      --amber-700: #EA6C00;
+      --amber-600: #F5841F;
+      --amber-500: #FB9A3C;
+      --amber-400: #FFA94D;
+      --amber-300: #FFCC8A;
+      --amber-200: #FFE4BA;
+      --amber-100: #FFF3E0;
+
+      /* Ink palette */
+      --ink:     #1A0800;
+      --ink-mid: #5C3410;
+      --ink-lt:  #9A6A3A;
+
+      /* Semantic */
+      --success: #16A34A;
+      --danger:  #DC2626;
+
+      /* Typography */
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif:   'DM Serif Display', serif;
+      --font-mono:    'Space Mono', monospace;
+
+      /* Borders — brutalist, zero radius */
+      --border:       2.5px solid #1A0800;
+      --border-thick: 4px solid #1A0800;
+
+      /* Hard offset shadows — no blur, per design principles */
+      --shadow-sm:       3px 3px 0 #1A0800;
+      --shadow-md:       5px 5px 0 #1A0800;
+      --shadow-lg:       8px 8px 0 #1A0800;
+      --shadow-amber-sm: 3px 3px 0 #C85F00;
+      --shadow-amber-md: 5px 5px 0 #C85F00;
+      --shadow-amber-lg: 8px 8px 0 #C85F00;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--ink);
+      background: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: var(--ink);
+      border-bottom: 3px solid var(--amber-900);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: #FFFBF5;
+    }
+    .nav-logo span { color: var(--amber-600); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      transition: color 0.12s;
+    }
+    .nav-links a:hover { color: var(--amber-600); }
+
+    .nav-cta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--amber-600);
+      border: 2px solid var(--ink);
+      padding: 8px 20px;
+      box-shadow: 3px 3px 0 var(--ink);
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .nav-cta:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+    .nav-cta:active { transform: translate(2px,2px); box-shadow: none; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      min-height: 100vh;
+      padding-top: 60px;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Vertical pinstripe - Italian suit fabric */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent, transparent 22px,
+        rgba(245,132,31,0.038) 22px, rgba(245,132,31,0.038) 23px
+      );
+      pointer-events: none;
+    }
+
+    /* Diagonal weave */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        transparent, transparent 34px,
+        rgba(92,52,16,0.045) 34px, rgba(92,52,16,0.045) 35px
+      );
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(245,132,31,0.1) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 80px 40px 130px;
+      max-width: 1020px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--amber-600);
+      border: 1.5px solid var(--amber-800);
+      padding: 7px 20px;
+      box-shadow: 3px 3px 0 var(--amber-800);
+      margin-bottom: 40px;
+    }
+    .hero-eyebrow-dot {
+      width: 5px; height: 5px;
+      background: var(--amber-600);
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(70px, 13vw, 158px);
+      letter-spacing: 10px;
+      line-height: 0.87;
+      color: #FFFBF5;
+      text-shadow: 8px 8px 0 rgba(200,95,0,0.25);
+    }
+    .hero-name-accent {
+      font-family: var(--font-display);
+      font-size: clamp(70px, 13vw, 158px);
+      letter-spacing: 10px;
+      line-height: 0.87;
+      color: var(--amber-600);
+      text-shadow: 8px 8px 0 var(--amber-900);
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.4vw, 30px);
+      color: var(--amber-400);
+      margin-bottom: 52px;
+      letter-spacing: 1px;
+    }
+
+    /* Ornamental divider */
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+    .hero-ornament-line {
+      width: 110px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--amber-800));
+    }
+    .hero-ornament-line.r {
+      background: linear-gradient(90deg, var(--amber-800), transparent);
+    }
+    .hero-ornament-diamond {
+      width: 9px; height: 9px;
+      background: var(--amber-600);
+      transform: rotate(45deg);
+      border: 1.5px solid var(--amber-800);
+    }
+    .hero-ornament-sm {
+      width: 5px; height: 5px;
+      background: var(--amber-900);
+      transform: rotate(45deg);
+    }
+
+    /* Live IG counter */
+    .ig-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border: 3px solid var(--amber-600);
+      box-shadow: 8px 8px 0 var(--amber-800);
+      margin-bottom: 52px;
+      overflow: hidden;
+    }
+    .ig-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 20px 24px;
+      background: rgba(245,132,31,0.12);
+      border-right: 2px solid var(--amber-800);
+    }
+    .ig-live-dot {
+      width: 10px; height: 10px;
+      background: var(--success);
+      border-radius: 50%;
+      border: 1.5px solid #15803D;
+      animation: igpulse 1.8s ease-in-out infinite;
+    }
+    @keyframes igpulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); }
+      60%      { box-shadow: 0 0 0 7px rgba(22,163,74,0); }
+    }
+    .ig-live-text {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--success);
+    }
+    .ig-right {
+      padding: 20px 32px;
+      text-align: left;
+    }
+    .ig-count {
+      font-family: var(--font-display);
+      font-size: 58px;
+      letter-spacing: 2px;
+      color: #FFFBF5;
+      line-height: 1;
+      min-width: 120px;
+    }
+    .ig-count-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: 3px;
+    }
+    .ig-handle {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--amber-400);
+      margin-top: 3px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .btn-hero-primary {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 38px;
+      background: var(--amber-600);
+      color: var(--ink);
+      border: var(--border-thick);
+      border-color: var(--ink);
+      box-shadow: 6px 6px 0 var(--amber-800);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .btn-hero-primary:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--amber-800); }
+    .btn-hero-primary:active { transform: translate(3px,3px); box-shadow: none; }
+
+    .btn-hero-ghost {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 38px;
+      background: transparent;
+      color: #FFFBF5;
+      border: 3px solid var(--amber-800);
+      box-shadow: 6px 6px 0 var(--amber-900);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.08s, box-shadow 0.08s, background 0.1s;
+    }
+    .btn-hero-ghost:hover { background: rgba(245,132,31,0.07); transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--amber-900); }
+    .btn-hero-ghost:active { transform: translate(3px,3px); box-shadow: none; }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 1;
+    }
+    .hero-scroll-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber-900);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 42px;
+      background: linear-gradient(180deg, var(--amber-800), transparent);
+      animation: scrollpulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollpulse {
+      0%,100% { opacity: 0.35; transform: scaleY(1); }
+      50%      { opacity: 1; transform: scaleY(0.55); }
+    }
+
+    /* ============================================================
+       MARQUEE
+    ============================================================ */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--amber-950);
+      border-top: var(--border-thick);
+      border-bottom: var(--border-thick);
+      border-color: var(--amber-900);
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 24s linear infinite;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding: 13px 20px;
+      font-family: var(--font-display);
+      font-size: 15px;
+      letter-spacing: 4px;
+      color: var(--amber-600);
+    }
+    .marquee-sep {
+      width: 6px; height: 6px;
+      background: var(--amber-800);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       STATS BAR
+    ============================================================ */
+    .stats-bar {
+      background: var(--amber-600);
+      border-bottom: var(--border-thick);
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+    .stat-bar-cell {
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: var(--border-thick);
+    }
+    .stat-bar-cell:last-child { border-right: none; }
+    .stat-bar-val {
+      font-family: var(--font-display);
+      font-size: 54px;
+      letter-spacing: 2px;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .stat-bar-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber-900);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* ============================================================
+       BIO
+    ============================================================ */
+    .bio {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(245,132,31,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,132,31,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      border-bottom: var(--border-thick);
+    }
+    .bio-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 100px 60px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 72px;
+      align-items: center;
+    }
+    .bio-eyebrow {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--amber-800);
+      margin-bottom: 16px;
+    }
+    .bio-heading {
+      font-family: var(--font-display);
+      font-size: clamp(48px,5.5vw,72px);
+      letter-spacing: 3px;
+      line-height: 0.95;
+      color: var(--ink);
+      margin-bottom: 36px;
+    }
+    .bio-heading span { color: var(--amber-800); display: block; }
+    .bio-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--ink-mid);
+      margin-bottom: 24px;
+    }
+    .bio-quote {
+      border-left: 5px solid var(--amber-600);
+      padding: 18px 22px;
+      background: var(--amber-100);
+      border-top: var(--border);
+      border-right: var(--border);
+      border-bottom: var(--border);
+      box-shadow: var(--shadow-amber-sm);
+      margin: 36px 0;
+    }
+    .bio-quote-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .bio-quote-attr {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--amber-800);
+      margin-top: 12px;
+    }
+
+    /* Profile card */
+    .bio-card {
+      border: var(--border-thick);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .bio-monogram {
+      background: var(--ink);
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .bio-monogram::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        90deg, transparent, transparent 16px,
+        rgba(245,132,31,0.065) 16px, rgba(245,132,31,0.065) 17px
+      );
+    }
+    .bio-monogram-text {
+      font-family: var(--font-display);
+      font-size: 136px;
+      letter-spacing: 4px;
+      color: var(--amber-600);
+      text-shadow: 6px 6px 0 var(--amber-900);
+      position: relative;
+      z-index: 1;
+      user-select: none;
+    }
+    .bio-card-footer {
+      background: var(--amber-600);
+      border-top: var(--border-thick);
+      padding: 12px 20px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink);
+      text-align: center;
+    }
+    .bio-mini-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-left: var(--border-thick);
+      border-right: var(--border-thick);
+      border-bottom: var(--border-thick);
+    }
+    .bio-mini-stat {
+      padding: 16px 18px;
+      background: var(--paper);
+      border-right: var(--border);
+      border-bottom: var(--border);
+    }
+    .bio-mini-stat:nth-child(2n) { border-right: none; }
+    .bio-mini-stat:nth-last-child(-n+2) { border-bottom: none; }
+
+    .bio-mini-val {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 1px;
+      color: var(--amber-800);
+    }
+    .bio-mini-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       OPERATION — content niches, dark bg
+    ============================================================ */
+    .operation {
+      background: var(--ink);
+      border-bottom: 3px solid var(--amber-900);
+      position: relative;
+      overflow: hidden;
+    }
+    .operation::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        90deg, transparent, transparent 22px,
+        rgba(245,132,31,0.03) 22px, rgba(245,132,31,0.03) 23px
+      );
+      pointer-events: none;
+    }
+    .operation-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 100px 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .operation-eyebrow {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--amber-600);
+      margin-bottom: 16px;
+    }
+    .operation-heading {
+      font-family: var(--font-display);
+      font-size: clamp(52px,6.5vw,80px);
+      letter-spacing: 4px; line-height: 0.93;
+      color: #FFFBF5;
+      margin-bottom: 60px;
+    }
+    .operation-heading span { color: var(--amber-600); display: block; }
+
+    .niches-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      border: 3px solid var(--amber-900);
+      box-shadow: var(--shadow-amber-lg);
+    }
+    .niche {
+      padding: 38px 30px;
+      border-right: 2.5px solid var(--amber-900);
+      border-bottom: 2.5px solid var(--amber-900);
+      transition: background 0.15s;
+    }
+    .niche:nth-child(3n)      { border-right: none; }
+    .niche:nth-last-child(-n+3) { border-bottom: none; }
+    .niche:hover { background: rgba(245,132,31,0.06); }
+
+    .niche-num {
+      font-family: var(--font-display);
+      font-size: 58px;
+      line-height: 1;
+      color: var(--amber-900);
+      margin-bottom: 10px;
+    }
+    .niche-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--amber-600);
+      margin-bottom: 12px;
+    }
+    .niche-desc {
+      font-size: 12px;
+      line-height: 1.75;
+      color: var(--ink-lt);
+    }
+
+    /* ============================================================
+       PLATFORMS
+    ============================================================ */
+    .platforms {
+      background: var(--amber-600);
+      border-bottom: var(--border-thick);
+    }
+    .platforms-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 96px 60px;
+    }
+    .platforms-eyebrow {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--amber-900);
+      margin-bottom: 16px;
+    }
+    .platforms-heading {
+      font-family: var(--font-display);
+      font-size: 60px;
+      letter-spacing: 3px;
+      color: var(--ink);
+      margin-bottom: 52px;
+    }
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      border: var(--border-thick);
+      box-shadow: var(--shadow-lg);
+    }
+    .platform-col {
+      background: var(--paper);
+      padding: 32px 28px;
+      border-right: var(--border-thick);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .platform-col:last-child { border-right: none; }
+    .platform-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--amber-800);
+    }
+    .plat-bar { display: flex; flex-direction: column; gap: 6px; }
+    .plat-bar-top {
+      display: flex; justify-content: space-between;
+    }
+    .plat-bar-name {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--ink);
+    }
+    .plat-bar-pct {
+      font-family: monospace;
+      font-size: 10px; font-weight: 700;
+      color: var(--amber-800);
+    }
+    .plat-bar-track {
+      height: 10px;
+      background: var(--amber-100);
+      border: var(--border);
+    }
+    .plat-bar-fill { height: 100%; background: var(--amber-800); }
+    .platform-desc {
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: var(--border);
+    }
+
+    /* ============================================================
+       PACKAGES
+    ============================================================ */
+    .packages {
+      background: var(--ink);
+      border-bottom: 3px solid var(--amber-900);
+      position: relative;
+      overflow: hidden;
+    }
+    .packages::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg, transparent, transparent 28px,
+        rgba(92,52,16,0.05) 28px, rgba(92,52,16,0.05) 29px
+      );
+      pointer-events: none;
+    }
+    .packages-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 100px 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .packages-eyebrow {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--amber-600);
+      margin-bottom: 16px;
+    }
+    .packages-heading {
+      font-family: var(--font-display);
+      font-size: clamp(52px,6.5vw,80px);
+      letter-spacing: 4px; line-height: 0.93;
+      color: #FFFBF5;
+      margin-bottom: 64px;
+    }
+    .packages-heading span { color: var(--amber-600); display: block; }
+
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+    }
+    .pkg-card {
+      border: 3px solid var(--amber-900);
+      background: rgba(255,248,238,0.03);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      transition: background 0.15s;
+    }
+    .pkg-card:hover { background: rgba(245,132,31,0.06); }
+
+    .pkg-card.featured {
+      background: var(--amber-600);
+      border: var(--border-thick);
+      border-color: var(--amber-600);
+      box-shadow: 0 0 0 3px var(--ink), 10px 10px 0 var(--amber-900);
+    }
+
+    .pkg-badge {
+      position: absolute;
+      top: -1px; right: 22px;
+      background: #FFFBF5;
+      border-left: var(--border);
+      border-right: var(--border);
+      border-bottom: var(--border);
+      padding: 4px 12px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--amber-800);
+    }
+    .pkg-card.featured .pkg-badge {
+      background: var(--ink);
+      color: var(--amber-600);
+      border-color: var(--ink);
+    }
+
+    .pkg-tier {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink-lt);
+    }
+    .pkg-card.featured .pkg-tier { color: var(--amber-900); }
+
+    .pkg-name {
+      font-family: var(--font-display);
+      font-size: 40px;
+      letter-spacing: 2px;
+      color: var(--amber-600);
+      line-height: 1;
+    }
+    .pkg-card.featured .pkg-name { color: var(--ink); }
+
+    .pkg-price {
+      font-family: var(--font-display);
+      font-size: 56px;
+      letter-spacing: 1px;
+      color: #FFFBF5;
+      line-height: 1;
+    }
+    .pkg-card.featured .pkg-price { color: var(--ink); }
+
+    .pkg-price-note {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: 4px;
+    }
+    .pkg-card.featured .pkg-price-note { color: var(--amber-900); }
+
+    .pkg-divider {
+      height: 2px;
+      background: var(--amber-900);
+    }
+    .pkg-card.featured .pkg-divider { background: rgba(26,8,0,0.25); }
+
+    .pkg-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .pkg-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--ink-lt);
+      line-height: 1.5;
+    }
+    .pkg-card.featured .pkg-list li { color: var(--amber-950); }
+    .pkg-bullet {
+      width: 6px; height: 6px;
+      background: var(--amber-600);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .pkg-card.featured .pkg-bullet { background: var(--ink); }
+
+    .pkg-cta {
+      display: block;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 13px 0;
+      text-align: center;
+      background: var(--amber-600);
+      color: var(--ink);
+      border: var(--border-thick);
+      border-color: var(--ink);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .pkg-card.featured .pkg-cta {
+      background: var(--ink);
+      color: var(--amber-600);
+      border-color: var(--amber-900);
+      box-shadow: 5px 5px 0 var(--amber-900);
+    }
+    .pkg-cta:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); }
+    .pkg-card.featured .pkg-cta:hover { box-shadow: 7px 7px 0 var(--amber-900); }
+    .pkg-cta:active { transform: translate(3px,3px); box-shadow: none; }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact {
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgba(245,132,31,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,132,31,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      border-bottom: var(--border-thick);
+    }
+    .contact-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 100px 60px;
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-eyebrow {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--amber-800);
+      margin-bottom: 16px;
+    }
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: clamp(48px,5.5vw,72px);
+      letter-spacing: 3px; line-height: 0.93;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .contact-heading span { color: var(--amber-800); display: block; }
+    .contact-desc {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--ink-mid);
+      margin-bottom: 44px;
+      max-width: 480px;
+    }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px; font-weight: 700;
+      color: var(--ink);
+    }
+    .contact-icon {
+      width: 38px; height: 38px;
+      background: var(--amber-100);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .contact-row-label {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-bottom: 2px;
+    }
+    .contact-row-val { color: var(--amber-800); }
+
+    /* Form panel */
+    .contact-form {
+      border: var(--border-thick);
+      box-shadow: var(--shadow-lg);
+      background: var(--ink);
+      padding: 40px;
+    }
+    .form-heading {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--amber-600);
+      margin-bottom: 30px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-bottom: 8px;
+    }
+    .form-input {
+      font-family: var(--font-mono);
+      font-size: 13px; font-weight: 700;
+      padding: 11px 14px;
+      border: var(--border-thick);
+      border-color: var(--amber-900);
+      background: rgba(255,248,238,0.05);
+      color: #FFFBF5;
+      width: 100%;
+      outline: none;
+      box-shadow: 3px 3px 0 var(--amber-900);
+      transition: box-shadow 0.1s, transform 0.1s, background 0.12s;
+    }
+    .form-input::placeholder { color: var(--ink-lt); font-weight: 400; }
+    .form-input:focus {
+      background: rgba(245,132,31,0.08);
+      box-shadow: var(--shadow-amber-md);
+      transform: translate(-2px,-2px);
+    }
+    .form-textarea { resize: vertical; min-height: 96px; }
+    .form-submit {
+      font-family: var(--font-mono);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 14px 0;
+      background: var(--amber-600);
+      color: var(--ink);
+      border: var(--border-thick);
+      border-color: var(--ink);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      cursor: pointer;
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .form-submit:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); }
+    .form-submit:active { transform: translate(3px,3px); box-shadow: none; }
+
+    /* Success state */
+    .form-success {
+      border: var(--border-thick);
+      border-color: #16A34A;
+      background: rgba(22,163,74,0.08);
+      padding: 20px;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: #16A34A;
+      display: none;
+      text-align: center;
+      box-shadow: 3px 3px 0 #15803D;
+      margin-top: 16px;
+    }
+    .form-success.visible { display: block; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background: var(--ink);
+      border-top: 3px solid var(--amber-900);
+      padding: 52px 60px 36px;
+    }
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+      padding-bottom: 36px;
+      border-bottom: 1.5px solid var(--amber-950);
+    }
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 30px;
+      letter-spacing: 4px;
+      color: #FFFBF5;
+    }
+    .footer-brand-name span { color: var(--amber-600); }
+    .footer-tagline {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ink-lt);
+      margin-top: 6px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .footer-nav a {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--ink-lt);
+      transition: color 0.12s;
+    }
+    .footer-nav a:hover { color: var(--amber-600); }
+    .footer-ig-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--amber-600);
+      border: 1.5px solid var(--amber-800);
+      padding: 9px 18px;
+      box-shadow: 2px 2px 0 var(--amber-900);
+      transition: transform 0.08s, box-shadow 0.08s;
+    }
+    .footer-ig-link:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--amber-900); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 24px;
+    }
+    .footer-copy {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #3D2200;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Cuzzy<span>Crew</span></div>
+    <ul class="nav-links">
+      <li><a href="#bio">The Story</a></li>
+      <li><a href="#operation">Content</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Make An Offer</a>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot" aria-hidden="true"></div>
+        La Famiglia &middot; CuzzyCrew
+        <div class="hero-eyebrow-dot" aria-hidden="true"></div>
+      </div>
+
+      <h1>
+        <span class="hero-name">Sharikh</span>
+        <span class="hero-name-accent">Naveed</span>
+      </h1>
+
+      <p class="hero-subtitle">Il Creatore &nbsp;&middot;&nbsp; Pakistani Born &nbsp;&middot;&nbsp; Italian&#8209;NY Soul</p>
+
+      <div class="hero-ornament" aria-hidden="true">
+        <div class="hero-ornament-line"></div>
+        <div class="hero-ornament-sm"></div>
+        <div class="hero-ornament-diamond"></div>
+        <div class="hero-ornament-sm"></div>
+        <div class="hero-ornament-line r"></div>
+      </div>
+
+      <!-- Live Instagram followers -->
+      <div class="ig-counter" role="status" aria-live="polite" aria-label="Live Instagram follower count">
+        <div class="ig-left">
+          <div class="ig-live-dot" aria-hidden="true"></div>
+          <div class="ig-live-text">Live</div>
+        </div>
+        <div class="ig-right">
+          <div class="ig-count" id="ig-count">—</div>
+          <div class="ig-count-label">Instagram Followers</div>
+          <div class="ig-handle">@sharikh_naveed</div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="https://www.instagram.com/sharikh_naveed/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+          View Instagram ↗
+        </a>
+        <a href="#packages" class="btn-hero-ghost">
+          Collab Proposals →
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="hero-scroll-label">Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Pakistani Creator <span class="marquee-sep"></span></span>
+      <span class="marquee-item">Italian&#8209;NY Accent <span class="marquee-sep"></span></span>
+      <span class="marquee-item">500K&plus; Reach <span class="marquee-sep"></span></span>
+      <span class="marquee-item">40&plus; Countries <span class="marquee-sep"></span></span>
+      <span class="marquee-item">8.4% Engagement <span class="marquee-sep"></span></span>
+      <span class="marquee-item">200&plus; Reels <span class="marquee-sep"></span></span>
+      <span class="marquee-item">Brand Collabs Open <span class="marquee-sep"></span></span>
+      <!-- duplicated for seamless loop -->
+      <span class="marquee-item">Pakistani Creator <span class="marquee-sep"></span></span>
+      <span class="marquee-item">Italian&#8209;NY Accent <span class="marquee-sep"></span></span>
+      <span class="marquee-item">500K&plus; Reach <span class="marquee-sep"></span></span>
+      <span class="marquee-item">40&plus; Countries <span class="marquee-sep"></span></span>
+      <span class="marquee-item">8.4% Engagement <span class="marquee-sep"></span></span>
+      <span class="marquee-item">200&plus; Reels <span class="marquee-sep"></span></span>
+      <span class="marquee-item">Brand Collabs Open <span class="marquee-sep"></span></span>
+    </div>
+  </div>
+
+  <!-- ===================== STATS BAR ===================== -->
+  <div class="stats-bar" role="list" aria-label="Key statistics">
+    <div class="stat-bar-cell" role="listitem">
+      <div class="stat-bar-val">500K</div>
+      <div class="stat-bar-label">Total Reach</div>
+    </div>
+    <div class="stat-bar-cell" role="listitem">
+      <div class="stat-bar-val">8.4%</div>
+      <div class="stat-bar-label">Engagement Rate</div>
+    </div>
+    <div class="stat-bar-cell" role="listitem">
+      <div class="stat-bar-val">40+</div>
+      <div class="stat-bar-label">Countries</div>
+    </div>
+    <div class="stat-bar-cell" role="listitem">
+      <div class="stat-bar-val">200+</div>
+      <div class="stat-bar-label">Reels Published</div>
+    </div>
+  </div>
+
+  <!-- ===================== BIO ===================== -->
+  <section class="bio" id="bio">
+    <div class="bio-inner">
+      <div>
+        <div class="bio-eyebrow">// The Story</div>
+        <h2 class="bio-heading">The Man.<br/><span>The Myth.<br/>The Accent.</span></h2>
+        <p class="bio-body">
+          Born in Pakistan. Raised on Italian cinema and New York culture. Sharikh Naveed is the creator who breaks every category — accent comedy, lifestyle, street culture — with a voice that refuses to be put in a box.
+        </p>
+        <blockquote class="bio-quote">
+          <p class="bio-quote-text">"I don't make content. I make people feel like they're with the crew."</p>
+          <footer class="bio-quote-attr">— Sharikh Naveed</footer>
+        </blockquote>
+        <p class="bio-body">
+          With 500K+ reach spanning 40+ countries and an engagement rate that makes the industry take notice, Sharikh turns every reel into a cultural moment. Brands don't just get a placement &mdash; they get adopted by the family.
+        </p>
+      </div>
+
+      <div>
+        <div class="bio-card">
+          <div class="bio-monogram" aria-label="Sharikh Naveed monogram">
+            <div class="bio-monogram-text" aria-hidden="true">SN</div>
+          </div>
+          <div class="bio-card-footer">@sharikh_naveed &middot; Il Creatore &middot; 2023–</div>
+          <div class="bio-mini-stats">
+            <div class="bio-mini-stat">
+              <div class="bio-mini-val">PKR 180K</div>
+              <div class="bio-mini-label">Top Deal Value</div>
+            </div>
+            <div class="bio-mini-stat">
+              <div class="bio-mini-val">2023</div>
+              <div class="bio-mini-label">Active Since</div>
+            </div>
+            <div class="bio-mini-stat">
+              <div class="bio-mini-val">3</div>
+              <div class="bio-mini-label">Platforms</div>
+            </div>
+            <div class="bio-mini-stat">
+              <div class="bio-mini-val">100%</div>
+              <div class="bio-mini-label">Authentic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== OPERATION ===================== -->
+  <section class="operation" id="operation">
+    <div class="operation-inner">
+      <div class="operation-eyebrow">// The Operation</div>
+      <h2 class="operation-heading">What The<br/><span>Family Does</span></h2>
+
+      <div class="niches-grid">
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true">I</div>
+          <h3 class="niche-title">Accent Comedy</h3>
+          <p class="niche-desc">The signature move. Italian-NY-Pakistani fusion that's unmistakably Sharikh. Viral potential built into every frame. The crowd always comes back for more.</p>
+        </div>
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true">II</div>
+          <h3 class="niche-title">Lifestyle</h3>
+          <p class="niche-desc">Street culture, food, fashion, and everyday moments told with a cinematic eye. Real life, no filter on the soul. The audience doesn't watch — they live it.</p>
+        </div>
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true">III</div>
+          <h3 class="niche-title">Brand Integration</h3>
+          <p class="niche-desc">Products don't just appear — they become part of the story. Organic, believable, and built for retention. The audience trusts the family's word.</p>
+        </div>
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true">IV</div>
+          <h3 class="niche-title">Reels &amp; Shorts</h3>
+          <p class="niche-desc">200+ short-form videos and counting. Hook in second one, hold through the end. The algorithm bends the knee. The formula is locked in.</p>
+        </div>
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true">V</div>
+          <h3 class="niche-title">Story Campaigns</h3>
+          <p class="niche-desc">Multi-part story arcs that build genuine anticipation and click-throughs. Not ads — episodes. The audience taps next before the frame even ends.</p>
+        </div>
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true">VI</div>
+          <h3 class="niche-title">Campaign Packages</h3>
+          <p class="niche-desc">Full end-to-end brand campaigns: strategy, scripting, filming, delivery, and reporting. White-glove treatment. La famiglia takes care of its partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLATFORMS ===================== -->
+  <section class="platforms" id="platforms">
+    <div class="platforms-inner">
+      <div class="platforms-eyebrow">// The Territory</div>
+      <h2 class="platforms-heading">Where We Operate</h2>
+
+      <div class="platforms-grid">
+
+        <div class="platform-col">
+          <div class="platform-name">Instagram</div>
+          <div class="plat-bar">
+            <div class="plat-bar-top">
+              <span class="plat-bar-name">Reach Share</span>
+              <span class="plat-bar-pct">68%</span>
+            </div>
+            <div class="plat-bar-track"><div class="plat-bar-fill" style="width:68%"></div></div>
+          </div>
+          <div class="plat-bar">
+            <div class="plat-bar-top">
+              <span class="plat-bar-name">Engagement</span>
+              <span class="plat-bar-pct">8.4%</span>
+            </div>
+            <div class="plat-bar-track"><div class="plat-bar-fill" style="width:84%"></div></div>
+          </div>
+          <p class="platform-desc">Primary platform. Reels + Stories + collaborations. Strongest community engagement and brand conversion rates. The main stage.</p>
+        </div>
+
+        <div class="platform-col">
+          <div class="platform-name">TikTok</div>
+          <div class="plat-bar">
+            <div class="plat-bar-top">
+              <span class="plat-bar-name">Reach Share</span>
+              <span class="plat-bar-pct">45%</span>
+            </div>
+            <div class="plat-bar-track"><div class="plat-bar-fill" style="width:45%"></div></div>
+          </div>
+          <div class="plat-bar">
+            <div class="plat-bar-top">
+              <span class="plat-bar-name">Engagement</span>
+              <span class="plat-bar-pct">6.1%</span>
+            </div>
+            <div class="plat-bar-track"><div class="plat-bar-fill" style="width:61%"></div></div>
+          </div>
+          <p class="platform-desc">Growing fast. Accent comedy content hits different here. Cross-posting strategy maximises total impressions across both platforms.</p>
+        </div>
+
+        <div class="platform-col">
+          <div class="platform-name">YouTube</div>
+          <div class="plat-bar">
+            <div class="plat-bar-top">
+              <span class="plat-bar-name">Reach Share</span>
+              <span class="plat-bar-pct">22%</span>
+            </div>
+            <div class="plat-bar-track"><div class="plat-bar-fill" style="width:22%"></div></div>
+          </div>
+          <div class="plat-bar">
+            <div class="plat-bar-top">
+              <span class="plat-bar-name">Watch Retention</span>
+              <span class="plat-bar-pct">74%</span>
+            </div>
+            <div class="plat-bar-track"><div class="plat-bar-fill" style="width:74%"></div></div>
+          </div>
+          <p class="platform-desc">Shorts + long-form. Highest watch retention rate. Ideal for in-depth brand storytelling and premium placements that need depth.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PACKAGES ===================== -->
+  <section class="packages" id="packages">
+    <div class="packages-inner">
+      <div class="packages-eyebrow">// Business Propositions</div>
+      <h2 class="packages-heading">The Collab<br/><span>Menu</span></h2>
+
+      <div class="pkg-grid">
+
+        <div class="pkg-card">
+          <div class="pkg-tier">Tier I</div>
+          <div class="pkg-name">La Storia</div>
+          <div>
+            <div class="pkg-price">PKR<br/>60K</div>
+            <div class="pkg-price-note">Starting Price</div>
+          </div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-list">
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Instagram Story Series (3–5 frames)</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Swipe-up link + branded mention</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>24hr high-intent audience exposure</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Light brand scripting included</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Post-campaign insights report</li>
+          </ul>
+          <a href="#contact" class="pkg-cta">Request Proposal</a>
+        </div>
+
+        <div class="pkg-card featured">
+          <div class="pkg-badge">Most Popular</div>
+          <div class="pkg-tier">Tier II · Signature</div>
+          <div class="pkg-name">Il Reel</div>
+          <div>
+            <div class="pkg-price">PKR<br/>150K</div>
+            <div class="pkg-price-note">Starting Price</div>
+          </div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-list">
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Dedicated brand Reel (30–60 sec)</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Full script + creative direction</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Organic-first integration style</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Cross-posted to all 3 platforms</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Full analytics breakdown</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>One revision round included</li>
+          </ul>
+          <a href="#contact" class="pkg-cta">Request Proposal</a>
+        </div>
+
+        <div class="pkg-card">
+          <div class="pkg-tier">Tier III</div>
+          <div class="pkg-name">La Famiglia</div>
+          <div>
+            <div class="pkg-price">PKR<br/>300K</div>
+            <div class="pkg-price-note">Starting Price</div>
+          </div>
+          <div class="pkg-divider"></div>
+          <ul class="pkg-list">
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Full campaign strategy included</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>2× Reels + 5-frame Story series</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Long-form YouTube integration</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>Creative, scripting &amp; production</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>14-day exclusive brand window</li>
+            <li><span class="pkg-bullet" aria-hidden="true"></span>CRM-level reporting + debrief</li>
+          </ul>
+          <a href="#contact" class="pkg-cta">Request Proposal</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+
+      <div>
+        <div class="contact-eyebrow">// Fare Un'Offerta</div>
+        <h2 class="contact-heading">Make The<br/><span>Call.</span></h2>
+        <p class="contact-desc">
+          Business is family. If your brand is worth bringing to the table, let's talk. Fill out the form and expect a reply within 24 hours. No gatekeepers — direct line to the man himself.
+        </p>
+        <div class="contact-details">
+          <div class="contact-row">
+            <div class="contact-icon" aria-hidden="true">📱</div>
+            <div>
+              <div class="contact-row-label">Instagram</div>
+              <a href="https://www.instagram.com/sharikh_naveed/" target="_blank" rel="noopener noreferrer" class="contact-row-val">@sharikh_naveed</a>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon" aria-hidden="true">🌍</div>
+            <div>
+              <div class="contact-row-label">Based In</div>
+              <span>Pakistan &middot; Available Worldwide</span>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon" aria-hidden="true">⚡</div>
+            <div>
+              <div class="contact-row-label">Response Time</div>
+              <span>Within 24 hours</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-heading">Make Your Move</div>
+        <form id="collab-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="f-brand">Brand / Company Name</label>
+            <input class="form-input" type="text" id="f-brand" name="brand" autocomplete="organization" placeholder="e.g. Nike, Pepsi, Local Brand" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-email">Email Address</label>
+            <input class="form-input" type="email" id="f-email" name="email" autocomplete="email" placeholder="hello@yourbrand.com" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-package">Package Interest</label>
+            <input class="form-input" type="text" id="f-package" name="package" placeholder="La Storia / Il Reel / La Famiglia / Custom"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-message">Your Proposition</label>
+            <textarea class="form-input form-textarea" id="f-message" name="message" placeholder="Tell us about your brand, campaign goals, and timeline..." required></textarea>
+          </div>
+          <button class="form-submit" type="submit">Send The Message &rarr;</button>
+          <div class="form-success" id="form-success" role="alert">
+            ✦ &nbsp; Message received. We'll be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Cuzzy<span>Crew</span></div>
+        <div class="footer-tagline">Est. 2023 &middot; @sharikh_naveed &middot; Il Creatore</div>
+      </div>
+      <nav aria-label="Footer navigation">
+        <ul class="footer-nav">
+          <li><a href="#bio">Story</a></li>
+          <li><a href="#operation">Content</a></li>
+          <li><a href="#packages">Packages</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="https://www.instagram.com/sharikh_naveed/" target="_blank" rel="noopener noreferrer" class="footer-ig-link">
+        ↗ &nbsp;Instagram
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 CuzzyCrew. All rights reserved.</span>
+      <span class="footer-copy">Built with taste. Served with respect.</span>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       LIVE INSTAGRAM FOLLOWER COUNT
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      var el = document.getElementById('ig-count');
+
+      function format(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+        if (n >= 1000)    return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+        return n.toLocaleString();
+      }
+
+      function fetchFollowers() {
+        // Use allorigins.win to bypass CORS and fetch Instagram's public profile HTML.
+        // Instagram embeds follower data in their page's inline JSON.
+        var proxyUrl = 'https://api.allorigins.win/get?url=' +
+          encodeURIComponent('https://www.instagram.com/sharikh_naveed/');
+
+        return fetch(proxyUrl)
+          .then(function (r) {
+            if (!r.ok) throw new Error('network');
+            return r.json();
+          })
+          .then(function (data) {
+            var html = (data && data.contents) ? data.contents : '';
+
+            // Pattern 1: GraphQL JSON blob embedded in page JS
+            var m = html.match(/"edge_followed_by"\s*:\s*\{\s*"count"\s*:\s*(\d+)/);
+            if (m) return parseInt(m[1], 10);
+
+            // Pattern 2: meta description "X Followers, Y Following"
+            m = html.match(/([\d,]+)\s+Followers/i);
+            if (m) return parseInt(m[1].replace(/,/g, ''), 10);
+
+            return null;
+          });
+      }
+
+      fetchFollowers()
+        .then(function (count) {
+          el.textContent = (count && count > 0) ? format(count) : '500K+';
+        })
+        .catch(function () {
+          el.textContent = '500K+';
+        });
+    })();
+  </script>
+
+  <!-- ============================================================
+       FORM — visual feedback (no backend required for static site)
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+      var form    = document.getElementById('collab-form');
+      var success = document.getElementById('form-success');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var brand   = document.getElementById('f-brand').value.trim();
+        var email   = document.getElementById('f-email').value.trim();
+        var message = document.getElementById('f-message').value.trim();
+
+        if (!brand || !email || !message) {
+          // Shake the submit button on incomplete form
+          var btn = form.querySelector('.form-submit');
+          btn.style.transform = 'translate(3px,3px)';
+          btn.style.boxShadow = 'none';
+          setTimeout(function () {
+            btn.style.transform = '';
+            btn.style.boxShadow = '';
+          }, 200);
+          return;
+        }
+
+        // Open mailto as fallback delivery mechanism
+        var subject = encodeURIComponent('CuzzyCrew Collab Enquiry — ' + brand);
+        var body    = encodeURIComponent(
+          'Brand: ' + brand + '\n' +
+          'Email: ' + email + '\n' +
+          'Package: ' + (document.getElementById('f-package').value.trim() || 'Not specified') + '\n\n' +
+          message
+        );
+        window.location.href = 'mailto:hello@cuzzycrew.com?subject=' + subject + '&body=' + body;
+
+        form.querySelector('.form-submit').style.display = 'none';
+        success.classList.add('visible');
+        form.reset();
+      });
+    })();
+  </script>
+
+</body>
+</html>
