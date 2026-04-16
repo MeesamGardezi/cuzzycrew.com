@@ -1,0 +1,55 @@
+<%- include('../partials/admin-head') %>
+<%- include('../partials/admin-header') %>
+
+<main class="admin-main" id="main-content">
+  <section class="admin-page-header">
+    <div>
+      <h1 class="admin-page-title">Security</h1>
+      <p class="admin-page-copy">Sessions are server-validated, no-store cached, CSRF-protected, and bounded by timeout policies.</p>
+    </div>
+    <div class="admin-inline-actions">
+      <a href="/admin" class="admin-secondary-button">Back to Overview</a>
+      <a href="/admin/contacts" class="admin-secondary-button">Open Contacts</a>
+    </div>
+  </section>
+
+  <section class="admin-kpis" aria-label="Security settings">
+    <article class="admin-kpi-card"><span>Idle Timeout</span><strong><%= securityConfig.idleMinutes %>m</strong><small>Server enforced</small></article>
+    <article class="admin-kpi-card"><span>Absolute Timeout</span><strong><%= securityConfig.absoluteMinutes %>m</strong><small>Server enforced</small></article>
+    <article class="admin-kpi-card"><span>Login Window</span><strong><%= securityConfig.loginWindowMinutes %>m</strong><small><%= securityConfig.loginMaxAttempts %> attempts allowed</small></article>
+    <article class="admin-kpi-card"><span>Lockout</span><strong><%= securityConfig.loginLockMinutes %>m</strong><small>After repeated failures</small></article>
+  </section>
+
+  <section class="admin-panel">
+    <div class="admin-panel-head">
+      <h2>Recent Activity</h2>
+    </div>
+    <% if (!activity.length) { %>
+    <p class="admin-empty">No audit events recorded yet.</p>
+    <% } else { %>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <caption class="sr-only">Audit activity</caption>
+        <thead>
+          <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Actor</th>
+            <th scope="col">When</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% activity.forEach(function(entry) { %>
+          <tr>
+            <td><%= entry.type %></td>
+            <td><%= entry.actor || 'system' %></td>
+            <td><%= entry.createdAt.replace('T', ' ').slice(0, 16) %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+  </section>
+</main>
+
+<%- include('../partials/admin-foot') %>
