@@ -9,6 +9,7 @@
   var btn  = document.getElementById('theme-toggle');
   var icon = document.getElementById('theme-icon');
   var lbl  = document.getElementById('theme-label');
+  var logos = document.querySelectorAll('[data-theme-logo]');
 
   function readTheme() {
     try {
@@ -26,16 +27,33 @@
     }
   }
 
+  function syncThemeLogos(theme) {
+    logos.forEach(function (logo) {
+      var nextSrc = theme === 'dark'
+        ? logo.getAttribute('data-logo-dark')
+        : logo.getAttribute('data-logo-light');
+
+      if (nextSrc) {
+        logo.setAttribute('src', nextSrc);
+      }
+    });
+  }
+
   function applyTheme(theme) {
     html.setAttribute('data-theme', theme);
     writeTheme(theme);
+    syncThemeLogos(theme);
     if (icon) icon.textContent = theme === 'dark' ? '☀' : '☽';
     if (lbl)  lbl.textContent  = theme === 'dark' ? 'LIGHT' : 'DARK';
   }
 
   // Apply saved or default theme on load
   var saved = readTheme();
-  if (saved === 'dark') applyTheme('dark');
+  if (saved === 'dark') {
+    applyTheme('dark');
+  } else {
+    syncThemeLogos('light');
+  }
 
   if (btn) {
     btn.addEventListener('click', function () {

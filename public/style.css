@@ -126,8 +126,31 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 3px solid var(--nav-border);
   transition: background 0.3s, border-color 0.3s;
 }
-.nav-logo { font-family: var(--font-display); font-size: 22px; letter-spacing: 3px; color: var(--nav-logo); transition: color 0.3s; }
-.nav-logo span { color: var(--amber-600); }
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nav-logo);
+  transition: color 0.3s;
+  flex-shrink: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.theme-logo {
+  display: block;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0;
+  object-fit: contain;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.nav-theme-logo {
+  height: 32px !important;
+}
+.footer-theme-logo {
+  height: 40px !important;
+}
 .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
 .nav-links a { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--nav-link); transition: color 0.12s; }
 .nav-links a:hover { color: var(--amber-600); }
@@ -1003,8 +1026,18 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 36px;
   border-bottom: 1.5px solid var(--amber-950);
 }
-.footer-brand-name { font-family: var(--font-display); font-size: 30px; letter-spacing: 4px; color: #FFFBF5; }
-.footer-brand-name span { color: var(--amber-600); }
+.footer-brand-name {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFBF5;
+  min-height: 18px;
+  overflow: hidden;
+}
+.footer-brand-name .theme-logo {
+  width: auto !important;
+  max-width: none !important;
+}
 .footer-tagline { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-lt); margin-top: 6px; }
 .footer-nav { display: flex; gap: 28px; list-style: none; align-items: center; }
 .footer-nav a { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-lt); transition: color 0.12s; }
@@ -1026,6 +1059,8 @@ a { color: inherit; text-decoration: none; }
    RESPONSIVE
 ================================================================ */
 @media (max-width: 900px) {
+  .nav-theme-logo { height: 26px !important; }
+  .footer-theme-logo { height: 30px !important; }
   .hero {
     height: auto;
     min-height: 100vh;
@@ -1131,6 +1166,8 @@ a { color: inherit; text-decoration: none; }
   .stat-bar-cell:nth-child(3) { border-top: var(--border-thick); }
 }
 @media (max-width: 600px) {
+  .nav-theme-logo { height: 22px !important; }
+  .footer-theme-logo { height: 26px !important; }
   .nav-links a {
     font-size: 11px;
   }
