@@ -3,6 +3,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const fs = require('fs');
 const path = require('path');
 
 const { createConfig } = require('./config');
@@ -23,11 +24,24 @@ async function createApp(options = {}) {
   const stores = createStores(config);
   await initializeStores(stores);
 
+  function assetVersion(assetPath) {
+    if (config.isProduction) {
+      return '20260429b';
+    }
+
+    try {
+      return String(Math.floor(fs.statSync(path.join(process.cwd(), 'public', assetPath)).mtimeMs));
+    } catch (_error) {
+      return String(Date.now());
+    }
+  }
+
   const app = express();
   const siteData = createSiteData(config);
 
   app.locals.siteData = siteData;
   app.locals.config = config;
+  app.locals.assetVersion = assetVersion;
   app.set('trust proxy', config.trustProxy);
 
   app.use(helmet({
