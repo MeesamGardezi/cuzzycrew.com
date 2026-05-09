@@ -9296,6 +9296,38 @@
       "city": "",
       "locationSource": "offline-private",
       "ipClass": "private"
+    },
+    {
+      "id": "e9dfb767732b79df",
+      "type": "page_view",
+      "createdAt": "2026-05-09T06:47:50.759Z",
+      "dateKey": "2026-05-09",
+      "visitorId": "9c3e90f86acdd56c7218807f8e6f838eac9cca3535125768e24e67056733944d",
+      "device": "desktop",
+      "agent": "Edge",
+      "section": "",
+      "source": "homepage",
+      "country": "Unknown",
+      "region": "",
+      "city": "",
+      "locationSource": "offline-private",
+      "ipClass": "private"
+    },
+    {
+      "id": "0c870dfb3d34875a",
+      "type": "section_view",
+      "createdAt": "2026-05-09T06:47:50.970Z",
+      "dateKey": "2026-05-09",
+      "visitorId": "9c3e90f86acdd56c7218807f8e6f838eac9cca3535125768e24e67056733944d",
+      "device": "desktop",
+      "agent": "Edge",
+      "section": "home",
+      "source": "site",
+      "country": "Unknown",
+      "region": "",
+      "city": "",
+      "locationSource": "offline-private",
+      "ipClass": "private"
     }
   ],
   "rollups": {
@@ -9337,8 +9369,8 @@
         "contact": 0
       },
       "2026-05-09": {
-        "page_view": 41,
-        "section_view": 64,
+        "page_view": 42,
+        "section_view": 65,
         "join": 0,
         "contact": 0
       }
@@ -9348,7 +9380,7 @@
       "platforms": 35,
       "contact": 48,
       "operation": 56,
-      "home": 165,
+      "home": 166,
       "recent-posts": 6
     },
     "conversions": {

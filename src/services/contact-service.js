@@ -201,6 +201,29 @@ class ContactService {
 
     return changed;
   }
+
+  async delete(id, actor) {
+    let deleted = null;
+
+    await this.store.update((state) => {
+      const index = state.items.findIndex((item) => item.id === id);
+      if (index === -1) return state;
+      deleted = state.items[index];
+      state.items.splice(index, 1);
+      return state;
+    });
+
+    if (deleted) {
+      await this.auditService.log('contact.deleted', {
+        actor,
+        contactId: id,
+        brand: deleted.brand,
+        email: deleted.email,
+      });
+    }
+
+    return deleted;
+  }
 }
 
 module.exports = {

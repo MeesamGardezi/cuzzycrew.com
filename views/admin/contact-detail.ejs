@@ -10,6 +10,11 @@
     <div class="admin-inline-actions">
       <span class="admin-status admin-status-<%= contact.status %>"><%= contact.status.replace('_', ' ') %></span>
       <a href="<%= returnTo %>" class="admin-secondary-button">Back to Inbox</a>
+      <form method="POST" action="/admin/contacts/<%= contact.id %>/delete" style="display:contents" onsubmit="return confirm('Permanently delete this contact request? This cannot be undone.')">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>"/>
+        <input type="hidden" name="returnTo" value="<%= returnTo %>"/>
+        <button type="submit" class="admin-danger-button">Delete</button>
+      </form>
     </div>
   </section>
 

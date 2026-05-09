@@ -134,6 +134,21 @@
       "createdAt": "2026-04-15T18:14:54.977Z",
       "actor": "admin",
       "count": 2
+    },
+    {
+      "id": "70beffd23bbc0f6e",
+      "type": "auth.unauthorized_access",
+      "createdAt": "2026-05-09T06:47:55.102Z",
+      "actor": "anonymous",
+      "path": "/admin",
+      "method": "GET"
+    },
+    {
+      "id": "9708468e4760ee99",
+      "type": "auth.login_success",
+      "createdAt": "2026-05-09T06:48:01.091Z",
+      "actor": "admin",
+      "ipHash": "a5442981d3c561d4ee93f05eebba64f079fac7feeeb5bbe155c79971fccc7d09"
     }
   ]
 }

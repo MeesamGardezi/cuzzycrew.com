@@ -359,6 +359,12 @@ function createAdminRouter(context) {
     return res.redirect(appendMessage(returnTo, 'updated'));
   }));
 
+  router.post('/contacts/:id/delete', requireCsrf, asyncHandler(async (req, res) => {
+    await contactService.delete(req.params.id, req.adminUser);
+    const returnTo = safeAdminPath(req.body.returnTo, '/admin/contacts');
+    return res.redirect(returnTo);
+  }));
+
   router.post('/contacts/bulk', requireCsrf, asyncHandler(async (req, res) => {
     const ids = Array.isArray(req.body.contactIds)
       ? req.body.contactIds

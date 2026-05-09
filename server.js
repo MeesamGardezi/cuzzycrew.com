@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 const { createApp } = require('./src/app');
 
 async function start() {
