@@ -1,0 +1,74 @@
+<!-- =====================================================
+     SECTION: CONTACT
+     Data used: formSuccess, formError, formScrollTo
+===================================================== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+
+    <!-- Left: heading + description -->
+    <div>
+      <div class="contact-eyebrow">// Contact</div>
+      <h2 class="contact-heading">Let&rsquo;s<br/><span>Collab.</span></h2>
+      <p class="contact-desc">Fill out the form and I&rsquo;ll get back to you within 24 hours.</p>
+    </div>
+
+    <!-- Right: form -->
+    <div class="contact-form">
+      <div class="form-heading">Make Your Move</div>
+
+      <% if (typeof formSuccess !== 'undefined' && formSuccess) { %>
+        <div class="form-success visible" role="alert">
+          &#10022;&nbsp; Message received. We&rsquo;ll be in touch within 24 hours.
+        </div>
+      <% } else { %>
+
+        <% if (typeof formError !== 'undefined' && formError) { %>
+          <div class="form-error" role="alert"><%= formError %></div>
+        <% } %>
+
+        <form id="collab-form" action="/contact" method="POST" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="f-brand">Brand / Company Name</label>
+            <input
+              class="form-input"
+              type="text"
+              id="f-brand"
+              name="brand"
+              autocomplete="organization"
+              placeholder="e.g. Nike, Pepsi, Local Brand"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-email">Email Address</label>
+            <input
+              class="form-input"
+              type="email"
+              id="f-email"
+              name="email"
+              autocomplete="email"
+              placeholder="hello@yourbrand.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="f-message">Your Proposition</label>
+            <textarea
+              class="form-input form-textarea"
+              id="f-message"
+              name="message"
+              placeholder="Tell us about your brand, campaign goals, and timeline..."
+              required
+            ></textarea>
+          </div>
+
+          <button class="form-submit" type="submit">Send The Message &rarr;</button>
+        </form>
+
+      <% } %>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,107 @@
+/* ================================================================
+   BIO
+================================================================ */
+.bio {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(245,132,31,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,132,31,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  border-bottom: var(--border-thick);
+}
+.bio-inner {
+  max-width: 1160px; margin: 0 auto;
+  padding: 80px 60px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 72px;
+  align-items: center;
+}
+.bio-eyebrow {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--amber-800); margin-bottom: 16px;
+}
+.bio-heading {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.5vw, 72px);
+  letter-spacing: 3px; line-height: 0.95;
+  color: var(--ink); margin-bottom: 36px;
+}
+.bio-heading span { color: var(--amber-800); display: block; }
+.bio-body {
+  font-size: 13px; line-height: 1.9;
+  color: var(--ink-mid); margin-bottom: 24px;
+}
+.bio-quote {
+  border-left: 5px solid var(--amber-600);
+  padding: 18px 22px;
+  background: var(--amber-100);
+  border-top: var(--border);
+  border-right: var(--border);
+  border-bottom: var(--border);
+  box-shadow: var(--shadow-amber-sm);
+  margin: 36px 0;
+}
+.bio-quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px; line-height: 1.65;
+  color: var(--ink);
+}
+.bio-quote-attr {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--amber-800); margin-top: 12px;
+}
+
+/* ── Bio card ── */
+.bio-card { border: var(--border-thick); box-shadow: var(--shadow-lg); overflow: hidden; }
+.bio-monogram {
+  background: var(--ink);
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.bio-monogram::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg, transparent, transparent 16px,
+    rgba(245,132,31,0.065) 16px, rgba(245,132,31,0.065) 17px
+  );
+}
+.bio-monogram-text {
+  font-family: var(--font-display);
+  font-size: 136px; letter-spacing: 4px;
+  color: var(--amber-600);
+  text-shadow: 6px 6px 0 var(--amber-900);
+  position: relative; z-index: 1;
+  user-select: none;
+}
+.bio-card-footer {
+  background: var(--amber-600);
+  border-top: var(--border-thick);
+  padding: 12px 20px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ink); text-align: center;
+}
+
+/* ── Mini stats ── */
+.bio-mini-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-left: var(--border-thick);
+  border-right: var(--border-thick);
+  border-bottom: var(--border-thick);
+}
+.bio-mini-stat {
+  padding: 16px 18px;
+  background: var(--paper);
+  border-right: var(--border);
+  border-bottom: var(--border);
+}
+.bio-mini-stat:nth-child(2n)        { border-right: none; }
+.bio-mini-stat:nth-last-child(-n+2) { border-bottom: none; }
+.bio-mini-val   { font-family: var(--font-display); font-size: 26px; letter-spacing: 1px; color: var(--amber-800); }
+.bio-mini-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-lt); margin-top: 2px; }

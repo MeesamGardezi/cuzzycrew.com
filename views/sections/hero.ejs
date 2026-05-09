@@ -1,0 +1,92 @@
+<!-- =====================================================
+     SECTION: HERO
+     Data used: igFollowers, creator.handle, creator.igUrl, shopUrl
+===================================================== -->
+<header class="hero" id="home">
+  <div class="hero-veins" aria-hidden="true"></div>
+  <div class="hero-glow"  aria-hidden="true"></div>
+
+  <div class="hero-inner">
+
+    <!-- Portrait -->
+    <div class="hero-left">
+      <figure class="hero-portrait-card">
+        <img
+          src="/images/influencer-main.webp"
+          alt="Portrait of Sharikh Naveed"
+          class="hero-portrait-image"
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption class="hero-portrait-caption">@sharikh_naveed</figcaption>
+      </figure>
+    </div>
+
+    <!-- Content -->
+    <div class="hero-right">
+
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot" aria-hidden="true"></div>
+        CuzzyCrew
+        <div class="hero-eyebrow-dot" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-name-ig-row">
+        <div class="hero-name-row">
+          <h1>
+            <span class="hero-name">Sharikh</span>
+            <span class="hero-name-accent">Naveed</span>
+          </h1>
+          <p class="hero-catchphrase">&ldquo;Hayaduin Cuzzy&rdquo;</p>
+        </div>
+
+        <!-- Live Instagram follower counter (server-rendered) -->
+        <div class="ig-counter" role="status" aria-live="polite" aria-label="Live Instagram follower count">
+        <div class="ig-left">
+          <div class="ig-live-dot" aria-hidden="true"></div>
+          <div class="ig-live-text">Live</div>
+        </div>
+        <div class="ig-right">
+          <div class="ig-count" id="ig-count"><%= igFollowers %></div>
+          <div class="ig-count-label">Instagram Followers</div>
+          <div class="ig-handle"><%= creator.handle %></div>
+        </div>
+      </div>
+      </div><!-- /.hero-name-ig-row -->
+
+      <div class="hero-ctas">
+        <a href="<%= creator.igUrl %>" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+          View Instagram &#8599;
+        </a>
+        <a href="<%= shopUrl %>" target="_blank" rel="noopener noreferrer" class="btn-hero-ghost">
+          Store &#8599;
+        </a>
+      </div>
+
+      <div class="hero-join">
+        <form id="join-form" class="hero-join-form" action="/join" method="POST" novalidate>
+          <label class="hero-join-label" for="hero-email">Join CuzzyCrew</label>
+          <div class="hero-join-row">
+            <input
+              class="hero-join-input"
+              type="email"
+              id="hero-email"
+              name="email"
+              placeholder="your@email.com"
+              autocomplete="email"
+              required
+            />
+            <button class="hero-join-btn" type="submit">Join &rarr;</button>
+          </div>
+          <div class="join-msg" id="join-msg" aria-live="polite"></div>
+        </form>
+      </div>
+
+    </div><!-- /.hero-right -->
+  </div><!-- /.hero-inner -->
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</header>

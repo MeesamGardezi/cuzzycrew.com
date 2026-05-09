@@ -1,0 +1,4 @@
+PassengerNodejs /home/cuzzodbc/nodevenv/cuzzycrew.com/18/bin/node
+PassengerAppRoot /home/cuzzodbc/cuzzycrew.com
+PassengerAppType node
+PassengerStartupFile server.js

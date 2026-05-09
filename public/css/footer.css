@@ -1,0 +1,42 @@
+/* ================================================================
+   FOOTER
+================================================================ */
+.footer {
+  background: var(--ink);
+  border-top: 3px solid var(--amber-900);
+  padding: 52px 60px 36px;
+}
+.footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding-bottom: 36px;
+  border-bottom: 1.5px solid var(--amber-950);
+}
+.footer-brand-name {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFBF5;
+  min-height: 18px;
+  overflow: hidden;
+}
+.footer-brand-name .theme-logo { width: auto !important; max-width: none !important; }
+.footer-tagline { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-lt); margin-top: 6px; }
+.footer-nav { display: flex; gap: 28px; list-style: none; align-items: center; }
+.footer-nav a { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-lt); transition: color 0.12s; }
+.footer-nav a:hover { color: var(--amber-600); }
+.footer-ig-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--amber-600);
+  border: 1.5px solid var(--amber-800);
+  padding: 9px 18px;
+  box-shadow: 2px 2px 0 var(--amber-900);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.footer-ig-link:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--amber-900); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 24px; }
+.footer-copy   { font-size: 10px; letter-spacing: 1px; color: #3D2200; }

@@ -1,0 +1,22 @@
+<!-- =====================================================
+     SECTION: OPERATION / NICHES
+     Data used: niches[]  { num, title, desc }
+===================================================== -->
+<section class="operation" id="operation">
+  <div class="operation-inner">
+
+    <div class="operation-eyebrow">// Content</div>
+    <h2 class="operation-heading">What I'm<br/><span>About</span></h2>
+
+    <div class="niches-grid">
+      <% niches.forEach(function(n) { %>
+        <div class="niche">
+          <div class="niche-num" aria-hidden="true"><%= n.num %></div>
+          <h3 class="niche-title"><%- n.title %></h3>
+          <p class="niche-desc"><%= n.desc %></p>
+        </div>
+      <% }); %>
+    </div>
+
+  </div>
+</section>

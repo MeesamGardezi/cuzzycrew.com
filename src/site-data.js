@@ -4,7 +4,7 @@ function createSiteData(config) {
   return {
     meta: {
       title: 'Sharikh Naveed · CuzzyCrew',
-      description: 'Pakistani creator. Accent comedy, lifestyle, and street culture. 86K+ followers.',
+      description: 'Creator from Sialkot. Accent comedy, lifestyle, and street culture. 86K+ followers.',
       url: config.siteUrl,
     },
     creator: {
@@ -13,8 +13,8 @@ function createSiteData(config) {
       igUrl: 'https://www.instagram.com/sharikh_naveed/',
       tagline: 'Sharikh Naveed · CuzzyCrew',
       bio: [
-        'Born in Pakistan. Grew up on Italian cinema and New York culture. Sharikh makes accent comedy, lifestyle, and street content that\'s hard to put in a box.',
-        '86K+ followers, real engagement, 40+ countries. Brands get an organic placement, not a banner ad.',
+        'I grew up in Sialkot absorbing two worlds at once — the rhythm of Italian cinema running on pirated DVDs and the raw energy of New York street culture coming through a dial-up connection. That collision never left me.',
+        'I started making videos because no one around me sounded quite like me. The accent — part Lahore, part Brooklyn, part Fellini — turned out to be the whole point. What began as a bit became a voice, and the voice became a community.',
       ],
       quote: '"I don\'t make content. I make people feel like they\'re with the crew."',
       stats: [
@@ -24,19 +24,18 @@ function createSiteData(config) {
         { value: '200+', label: 'Reels Published' },
       ],
       miniStats: [
-        { value: 'PKR 180K', label: 'Top Deal Value' },
+        { value: 'Sialkot', label: 'Origin' },
         { value: '2023', label: 'Active Since' },
-        { value: '3', label: 'Platforms' },
-        { value: '100%', label: 'Authentic' },
+        { value: '40+', label: 'Countries Reached' },
+        { value: '200+', label: 'Videos Made' },
       ],
     },
     niches: [
-      { num: 'I', title: 'Accent Comedy', desc: 'The signature. Italian-NY-Pakistani fusion, unmistakably Sharikh. Every video built around the bit.' },
-      { num: 'II', title: 'Lifestyle', desc: 'Street culture, food, fashion, everyday moments. Shot clean, edited sharp, kept real.' },
-      { num: 'III', title: 'Brand Integration', desc: 'Products work when they fit the story. Organic placements, not forced reads. The audience notices the difference.' },
-      { num: 'IV', title: 'Reels & Shorts', desc: '200+ short-form videos. Strong hooks, high retention, consistent posting cadence.' },
-      { num: 'V', title: 'Story Campaigns', desc: 'Multi-frame story series with real click-through. Built around narrative, not just product shots.' },
-      { num: 'VI', title: 'Full Campaigns', desc: 'Strategy, scripting, filming, delivery, and reporting. End to end.' },
+      { num: 'I', title: 'Accent Comedy', desc: 'The bit that started everything. Italian-NY-Sialkoti all at once. It sounds wrong until it sounds exactly right.' },
+      { num: 'II', title: 'Street & Food', desc: 'Lahore to wherever. What I eat, where I go, what catches my eye. Unscripted.' },
+      { num: 'III', title: 'Everyday Life', desc: 'The mundane stuff that isn\'t actually mundane. Observations, moments, things that shouldn\'t be funny but are.' },
+      { num: 'IV', title: 'Short-Form', desc: 'Reels, Shorts, TikToks. Fast, sharp, done. The format I think in.' },
+      { num: 'V', title: 'Creator Collabs', desc: 'When the chemistry is real you can feel it. I only link with people I\'d actually hang with.' },
     ],
     platforms: [
       {
@@ -45,7 +44,7 @@ function createSiteData(config) {
         engLabel: 'Engagement',
         engVal: '8.4%',
         engPct: 84,
-        desc: 'Primary platform. Reels, Stories, and collabs. Highest engagement and conversion.',
+        desc: 'My primary platform. Reels, Stories, and collabs. This is where my community is most active.',
       },
       {
         name: 'TikTok',
@@ -53,7 +52,7 @@ function createSiteData(config) {
         engLabel: 'Engagement',
         engVal: '6.1%',
         engPct: 61,
-        desc: 'Growing. Accent content works well here. Cross-posted for wider reach.',
+        desc: 'Growing fast. My accent content hits differently here. I cross-post for wider reach.',
       },
       {
         name: 'YouTube',
@@ -61,7 +60,7 @@ function createSiteData(config) {
         engLabel: 'Watch Retention',
         engVal: '74%',
         engPct: 74,
-        desc: 'Shorts and long-form. Good watch retention. Better for in-depth content.',
+        desc: 'Shorts and long-form. I use it for deeper content where I can actually tell a story.',
       },
     ],
     shopUrl: config.shopUrl,

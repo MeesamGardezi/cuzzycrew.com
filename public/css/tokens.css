@@ -1,0 +1,100 @@
+/* ================================================================
+   DESIGN TOKENS
+   Light mode defaults — dark mode overrides under [data-theme=dark]
+================================================================ */
+:root {
+  /* Amber scale */
+  --amber-950: #431400;
+  --amber-900: #7C2D00;
+  --amber-800: #C85F00;
+  --amber-700: #EA6C00;
+  --amber-600: #F5841F;
+  --amber-500: #FB9A3C;
+  --amber-400: #FFA94D;
+  --amber-300: #FFCC8A;
+  --amber-200: #FFE4BA;
+  --amber-100: #FFF3E0;
+
+  /* Semantic */
+  --success: #16A34A;
+  --danger:  #DC2626;
+
+  /* Fonts */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif:   'DM Serif Display', serif;
+  --font-mono:    'Space Mono', monospace;
+
+  /* Surface — light */
+  --bg:      #FFFBF5;
+  --paper:   #FFF8EE;
+  --ink:     #1A0800;
+  --ink-mid: #5C3410;
+  --ink-lt:  #9A6A3A;
+
+  /* Hero — light */
+  --hero-bg:    #FFFBF5;
+  --hero-text:  #1A0800;
+  --hero-sub:   #C85F00;
+  --hero-name2: #C85F00;
+
+  /* Nav — light */
+  --nav-bg:         #FFFBF5;
+  --nav-border:     #C85F00;
+  --nav-logo:       #1A0800;
+  --nav-link:       #9A6A3A;
+  --nav-cta-shadow: #1A0800;
+
+  /* Borders & shadows */
+  --border:          2.5px solid #1A0800;
+  --border-thick:    4px solid #1A0800;
+  --shadow-sm:       3px 3px 0 #1A0800;
+  --shadow-md:       5px 5px 0 #1A0800;
+  --shadow-lg:       8px 8px 0 #1A0800;
+  --shadow-amber-sm: 3px 3px 0 #C85F00;
+  --shadow-amber-md: 5px 5px 0 #C85F00;
+  --shadow-amber-lg: 8px 8px 0 #C85F00;
+}
+
+[data-theme="dark"] {
+  --bg:      #120500;
+  --paper:   #1E0A02;
+  --ink:     #FFFBF5;
+  --ink-mid: #FFE4BA;
+  --ink-lt:  #FFA94D;
+
+  --hero-bg:    #0D0300;
+  --hero-text:  #FFFBF5;
+  --hero-sub:   #FFA94D;
+  --hero-name2: #F5841F;
+
+  --nav-bg:         #0D0300;
+  --nav-border:     #7C2D00;
+  --nav-logo:       #FFFBF5;
+  --nav-link:       #9A6A3A;
+  --nav-cta-shadow: #7C2D00;
+
+  --border:       2.5px solid #C85F00;
+  --border-thick: 4px solid #C85F00;
+  --shadow-sm:    3px 3px 0 #7C2D00;
+  --shadow-md:    5px 5px 0 #7C2D00;
+  --shadow-lg:    8px 8px 0 #7C2D00;
+}
+
+/* ================================================================
+   RESET + BASE
+================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+a { color: inherit; text-decoration: none; }

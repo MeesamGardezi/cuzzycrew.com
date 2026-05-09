@@ -37,7 +37,7 @@ function createConfig(overrides = {}) {
     nodeEnv,
     isProduction,
     isTest,
-    port: readInt(env.PORT, 3000),
+    port: readInt(env.PORT, 3100),
     dataDir,
     sessionSecret,
     visitorSalt: env.VISITOR_SALT || sessionSecret || 'cuzzycrew-dev-visitor-salt',
@@ -45,7 +45,7 @@ function createConfig(overrides = {}) {
     adminPassword,
     adminCookieName: env.ADMIN_COOKIE_NAME || 'cc_admin_session',
     siteUrl: env.SITE_URL || 'https://cuzzycrew.com',
-    shopUrl: env.SHOP_URL || 'https://shop.cuzzycrew.com',
+    shopUrl: env.SHOP_URL || 'https://store.cuzzycrew.com',
     trustProxy: readBool(env.TRUST_PROXY, false),
     sessionIdleMinutes: readInt(env.ADMIN_SESSION_IDLE_MINUTES, 30),
     sessionAbsoluteMinutes: readInt(env.ADMIN_SESSION_ABSOLUTE_MINUTES, 8 * 60),
@@ -60,7 +60,7 @@ function createConfig(overrides = {}) {
     auditEventLimit: readInt(env.AUDIT_EVENT_LIMIT, 2000),
     geoCacheLimit: readInt(env.GEO_CACHE_LIMIT, 2000),
     disableExternalFetch: readBool(env.DISABLE_EXTERNAL_FETCH, false),
-    instagramFollowersFallback: readInt(env.INSTAGRAM_FOLLOWERS_FALLBACK, 80000),
+    instagramFollowersFallback: readInt(env.INSTAGRAM_FOLLOWERS_FALLBACK, 98000),
   };
 }
 

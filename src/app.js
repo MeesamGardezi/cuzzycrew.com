@@ -89,6 +89,10 @@ async function createApp(options = {}) {
     disableExternalFetch: config.disableExternalFetch || options.disableExternalFetch,
     fallbackCount: config.instagramFollowersFallback,
   });
+
+  if (!config.isTest) {
+    instagramService.startBackgroundRefresh();
+  }
   const authService = new AuthService({
     store: stores.auth,
     auditService,

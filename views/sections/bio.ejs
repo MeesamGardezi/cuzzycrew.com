@@ -1,0 +1,20 @@
+<!-- =====================================================
+     SECTION: BIO
+     Data used: creator.name, creator.bio[], creator.quote, creator.miniStats[]
+===================================================== -->
+<section class="bio" id="bio">
+  <div class="bio-inner">
+
+    <!-- Left: text -->
+    <div>
+      <div class="bio-eyebrow">// Bio</div>
+      <h2 class="bio-heading">Sharikh<br/><span>Naveed</span></h2>
+
+      <% creator.bio.forEach(function(para) { %>
+        <p class="bio-body"><%= para %></p>
+      <% }); %>
+
+    </div>
+
+  </div>
+</section>

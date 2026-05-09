@@ -1,0 +1,84 @@
+/* ================================================================
+   OPERATION / NICHES
+================================================================ */
+.operation {
+  background: var(--paper);
+  border-bottom: var(--border-thick);
+  position: relative; overflow: hidden;
+}
+.operation::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg, transparent, transparent 22px,
+    rgba(26,8,0,0.025) 22px, rgba(26,8,0,0.025) 23px
+  );
+  pointer-events: none;
+}
+.operation-inner {
+  max-width: 1160px; margin: 0 auto;
+  padding: 80px 60px;
+  position: relative; z-index: 1;
+}
+.operation-eyebrow {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--amber-800); margin-bottom: 16px;
+}
+.operation-heading {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6.5vw, 80px);
+  letter-spacing: 4px; line-height: 0.93;
+  color: var(--ink); margin-bottom: 40px;
+}
+.operation-heading span { color: var(--amber-800); display: block; }
+
+/* Niches grid */
+.niches-grid {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-lg);
+}
+.niche {
+  display: grid;
+  grid-template-columns: 100px 1fr 2fr;
+  align-items: center;
+  border-bottom: var(--border);
+  transition: background 0.12s, transform 0.08s, box-shadow 0.08s;
+  cursor: default;
+}
+.niche:last-child { border-bottom: none; }
+.niche:hover {
+  background: var(--amber-800);
+  transform: translate(-3px,-3px);
+  box-shadow: 3px 3px 0 var(--ink);
+  z-index: 1;
+  position: relative;
+}
+.niche:hover .niche-num,
+.niche:hover .niche-title,
+.niche:hover .niche-desc { color: var(--paper); }
+
+.niche-num {
+  font-family: var(--font-display);
+  font-size: 52px; line-height: 1;
+  color: var(--amber-800);
+  padding: 28px 0 28px 30px;
+  border-right: var(--border);
+  transition: color 0.12s;
+}
+.niche-title {
+  font-family: var(--font-display);
+  font-size: 20px; letter-spacing: 2px;
+  color: var(--ink);
+  padding: 28px 24px;
+  border-right: var(--border);
+  transition: color 0.12s;
+}
+.niche-desc {
+  font-size: 12px; line-height: 1.75;
+  color: var(--ink-mid);
+  padding: 28px 30px;
+  transition: color 0.12s;
+}
